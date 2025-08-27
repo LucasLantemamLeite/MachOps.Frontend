@@ -1,0 +1,30 @@
+// Global Root //
+
+$DarkPrimaryColor: #2d2d2a;
+$DarkSecondaryColor: #4c4c47;
+$BlueColor: #848fa5;
+$YellowColor: #e5dcc5;
+$RedColor: #c14953;
+
+// --------------------------------- //
+
+// Default Configuration //
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  color: white;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  line-height: 1.4;
+}
+
+// --------------------------------- //
