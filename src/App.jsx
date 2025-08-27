@@ -1,5 +1,12 @@
+import "./GlobalStyle.scss";
+import { DashBoard } from "./Pages/DashBoard";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <DashBoard />
+    </>
+  );
 }
 
 export default App;
