@@ -1,0 +1,46 @@
+@use "../../GlobalStyle.scss" as Style;
+
+nav {
+  display: grid;
+  padding: 1.5rem 1rem;
+  grid-template-columns: auto 1fr 0.1fr;
+  background-color: #{Style.$DarkSecondaryColor};
+  align-items: center;
+  box-shadow: 0rem 0.1rem 0.6rem rgba(0, 0, 0, 0.507);
+
+  & .navbar__div-filter {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    & .search__icon-wrapper {
+      display: flex;
+      align-self: center;
+      position: absolute;
+      left: 0.5rem;
+      pad: 1rem;
+      border-right: 1px solid rgba(0, 0, 0, 0.425);
+      height: 80%;
+      padding-right: 0.6rem;
+    }
+
+    & input {
+      font-family: inherit;
+      font-weight: inherit;
+      font-size: 1.4rem;
+      width: 50rem;
+      padding: 0.9rem;
+      padding-left: 4.5rem;
+      border-radius: 0.8rem;
+      border: none;
+      outline: none;
+      box-shadow: 0rem 0.1rem 0.6rem rgba(0, 0, 0, 0.507);
+
+      &::selection {
+        background-color: #{Style.$DarkSecondaryColor};
+        color: white;
+      }
+    }
+  }
+}
