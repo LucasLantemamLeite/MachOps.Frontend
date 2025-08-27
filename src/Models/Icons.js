@@ -5,6 +5,7 @@ import Bulldozer from "../Assets/Icons/Bulldozer.svg";
 import Crane from "../Assets/Icons/Crane.svg";
 import AGV from "../Assets/Icons/AGV.svg";
 import Skid from "../Assets/Icons/Skid.svg";
+import AppLogo from "../Assets/Icons/AppLogo.svg";
 
 export const Icons = {
   ForkliftIcon: Forklift,
@@ -14,4 +15,5 @@ export const Icons = {
   CraneIcon: Crane,
   AGVIcon: AGV,
   SkidIcon: Skid,
+  AppLogoIcon: AppLogo,
 };
