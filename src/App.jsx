@@ -1,10 +1,15 @@
-import "./GlobalStyle.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { DashBoard } from "./Pages/DashBoard";
+import "./GlobalStyle.scss";
 
 function App() {
   return (
     <>
-      <DashBoard />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DashBoard />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
