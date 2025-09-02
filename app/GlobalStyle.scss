@@ -1,0 +1,59 @@
+// Variáveis //
+
+// Paletas
+
+$purple-primary: #4b3f91; // Roxo principal
+$purple-light: #6c5fa3; // Roxo mais claro
+$purple-dark: #2e225e; // Roxo escuro
+$gold-accent: #e6af2e; // Detalhes, botões, highlights
+$gray-light: #e0e2db; // Fundo claro, textos secundários
+$gray-dark: #191716; // Texto principal, fundo escuro
+$brown-soft: #beb7a4; // Elementos neutros, borders suaves
+
+// Tamanho de Fontes - Type Scale
+
+$font-xs: 0.75rem; // 12px
+$font-sm: 0.875rem; // 14px
+$font-md: 1rem; // 16px (base)
+$font-lg: 1.125rem; // 18px
+$font-xl: 1.5rem; // 24px
+$font-2xl: 2rem; // 32px
+$font-3xl: 2.5rem; // 40px
+$font-4xl: 3rem; // 48px
+$font-5xl: 4rem; // 64px
+
+// Padrões
+
+$default-border-radius: 0.9rem; // 9px
+
+// --------------- //
+
+// Funcões
+
+// --------------- //
+
+// Mixins
+
+// --------------- //
+
+// Configurações Gerais //
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #ccc4c4;
+  font-size: font-xl;
+  font-weight: bold;
+  line-height: 1.4;
+  font-family: "Roboto", "Montserrat", sans-serif;
+}
+
+// --------------- //
