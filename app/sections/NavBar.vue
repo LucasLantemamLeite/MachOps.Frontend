@@ -1,7 +1,7 @@
 <template>
   <nav>
     <ImageComponent staticImg="AppLogoIcon" />
-    <div>
+    <div class="navbar__div-search">
       <div class="navbar__div-icon-wrapper">
         <ImageComponent staticImg="SearchIcon" />
       </div>
@@ -30,42 +30,44 @@ nav {
   & img {
     width: 20rem;
   }
+}
 
-  & div {
-    position: relative;
-    display: flex;
-    justify-self: center;
-    align-items: center;
+.navbar__div-search {
+  position: relative;
+  display: flex;
+  justify-self: center;
+  align-items: center;
 
-    .navbar__div-icon-wrapper {
-      position: absolute;
-      left: 0.5rem;
-      align-items: center;
-      border-right: 1px solid black;
-      padding-right: 0.5rem;
+  & input {
+    width: 50rem;
+    outline: none;
+    border: none;
+    padding: 0.8rem;
+    padding-left: 4.7rem;
+    font-family: inherit;
+    font-size: Style.$font-xl;
+    font-weight: bold;
+    border-radius: Style.$default-border-radius;
+    box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
 
-      & img {
-        width: 3.2rem;
-      }
+    &::selection {
+      background-color: Style.$purple-primary;
+      color: white;
     }
+  }
+}
 
-    & input {
-      width: 50rem;
-      outline: none;
-      border: none;
-      padding: 0.8rem;
-      padding-left: 4.7rem;
-      font-family: inherit;
-      font-size: Style.$font-xl;
-      font-weight: bold;
-      border-radius: Style.$default-border-radius;
-      box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
+.navbar__div-icon-wrapper {
+  position: absolute;
+  left: 0.5rem;
+  display: flex;
+  align-items: center;
+  border-right: 1px solid black;
+  padding-right: 0.5rem;
 
-      &::selection {
-        background-color: Style.$purple-primary;
-        color: white;
-      }
-    }
+  & img {
+    width: 3.2rem;
+    pointer-events: none;
   }
 }
 </style>
