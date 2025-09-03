@@ -50,8 +50,9 @@ html {
 
 body {
   background-color: #ccc4c4;
-  font-size: font-xl;
+  font-size: $font-2xl;
   font-weight: bold;
+  color: white;
   line-height: 1.4;
   font-family: "Roboto", "Montserrat", sans-serif;
 }
