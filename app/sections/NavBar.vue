@@ -2,13 +2,17 @@
   <nav>
     <ImageComponent staticImg="AppLogoIcon" />
     <div>
-      <p>caixa de pesquisa</p>
+      <div class="navbar__div-icon-wrapper">
+        <ImageComponent staticImg="SearchIcon" />
+      </div>
+      <InputComponent placeHolder="Buscar..." />
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
+import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
@@ -28,9 +32,40 @@ nav {
   }
 
   & div {
+    position: relative;
     display: flex;
-    justify-content: center;
-    align-self: center;
+    justify-self: center;
+    align-items: center;
+
+    .navbar__div-icon-wrapper {
+      position: absolute;
+      left: 0.5rem;
+      align-items: center;
+      border-right: 1px solid black;
+      padding-right: 0.5rem;
+
+      & img {
+        width: 3.2rem;
+      }
+    }
+
+    & input {
+      width: 50rem;
+      outline: none;
+      border: none;
+      padding: 0.8rem;
+      padding-left: 4.7rem;
+      font-family: inherit;
+      font-size: Style.$font-xl;
+      font-weight: bold;
+      border-radius: Style.$default-border-radius;
+      box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
+
+      &::selection {
+        background-color: Style.$purple-primary;
+        color: white;
+      }
+    }
   }
 }
 </style>
