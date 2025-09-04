@@ -3,7 +3,7 @@ import { ApiRouter } from "~/models/ApiRouter";
 
 const api = axios.create({ baseURL: "http://localhost:5054/v1", timeout: 5000 });
 
-export async function CallApiService(router: keyof typeof ApiRouter, data: any = null, timeout: number = 5) {
+export async function CallApiService(router, data = null, timeout = 5) {
   const route = ApiRouter[router];
 
   if (!route) throw Error(`A rota: ${router} não existe no objeto ApiRouter.`);
