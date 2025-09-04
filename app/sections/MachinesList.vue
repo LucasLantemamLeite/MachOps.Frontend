@@ -1,51 +1,52 @@
 <template>
-  <div class="machinelist__container">
-    <div class="machinelist__add-card">
+  <div class="machinelist__div-container">
+    <div class="machinelist__div-add-card">
       <ImageComponent staticImg="AddIcon" />
     </div>
 
-    <div v-for="machine in machines" class="machinelist__mach-card">
-      <p>{{ machine.name }}</p>
+    <div v-for="machine in machines" class="machinelist__div-mach-card">
+      <div class="machinelist__div-mach-title">
+        <p>{{ machine.name }}</p>
+        <hr />
+      </div>
+
+      <ImageComponent :type="MachineType" :imgKey="machine.type" />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { AxiosError } from "axios";
+<script setup lang="js">
 import ImageComponent from "~/components/ImageComponent.vue";
-import type { Machine } from "~/models/Machine";
 import { CallApiService } from "~/services/CallApiService";
+import { MachineType } from "~/models/MachineType";
 
-const machines = ref<Machine[]>([]);
+const machines = ref([]);
 
 onMounted(async () => {
-  try {
-    var result = await CallApiService("GetAllMachines", null, 30);
-
+  try{
+    const result = await CallApiService("GetAllMachines", null, 30);
     machines.value = result.data;
-    console.log(result.message);
-  } catch (err: unknown) {
-    if (err instanceof AxiosError) {
-      console.log("StatusCode: " + err.response?.status);
-      console.log("Resposta: " + err.response?.data.message);
-    } else {
-      console.log(err);
-    }
-    return [];
+    console.log(result);
   }
-});
+  catch (err)
+  {
+    console.log(err);
+  }
+
+})
 </script>
 
 <style lang="scss">
 @use "../GlobalStyle.scss" as Style;
 
-.machinelist__container {
+.machinelist__div-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   padding: 2rem 1.5rem;
 }
 
-.machinelist__add-card {
+.machinelist__div-add-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,6 +64,47 @@ onMounted(async () => {
 
   & img {
     width: 7rem;
+  }
+}
+
+.machinelist__div-mach-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  height: 20rem;
+  cursor: pointer;
+  border-radius: Style.$default-border-radius;
+  background-color: Style.$purple-primary;
+  box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.301);
+  transition: 300ms ease;
+
+  &:hover {
+    background-color: Style.$purple-dark;
+    transform: translateX(3px);
+  }
+
+  & img {
+    width: 10rem;
+  }
+}
+
+.machinelist__div-mach-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 1rem;
+
+  & p {
+    font-size: Style.$font-lg * 1.5;
+  }
+
+  & hr {
+    width: 10rem;
+    background-color: white;
+    height: 0.3rem;
   }
 }
 </style>
