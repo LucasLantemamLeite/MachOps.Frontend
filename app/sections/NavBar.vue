@@ -10,7 +10,7 @@
   </nav>
 </template>
 
-<script setup lang="ts">
+<script setup lang="js">
 import ImageComponent from "~/components/ImageComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 </script>
