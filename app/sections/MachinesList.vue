@@ -4,13 +4,13 @@
       <ImageComponent staticImg="AddIcon" />
     </div>
 
-    <div v-for="machine in machines" class="machinelist__div-mach-card">
+    <div v-for="machine in machines" className="machinelist__div-mach-card" :style="{ backgroundColor: handlerBackgroundColor(machine) }">
       <div class="machinelist__div-mach-title">
         <p>{{ machine.name }}</p>
         <hr />
       </div>
 
-      <ImageComponent :type="MachineType" :imgKey="machine.type" />
+      <ImageComponent className="mach-type" :type="MachineType" :imgKey="machine.type" />
     </div>
   </div>
 </template>
@@ -32,8 +32,17 @@ onMounted(async () => {
   {
     console.log(err);
   }
-
 })
+
+function handlerBackgroundColor(machine){
+  switch (machine.status)
+  {
+    case 1: return "#4CAF50";
+    case 2: return "#C9302C"
+    case 3: return "#F0AD4E";
+    default: return "#4CAF50  "
+  }
+}
 </script>
 
 <style lang="scss">
@@ -42,7 +51,7 @@ onMounted(async () => {
 .machinelist__div-container {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   padding: 2rem 1.5rem;
 }
 
@@ -50,10 +59,10 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20rem;
+  height: 30rem;
   cursor: pointer;
   border-radius: Style.$default-border-radius;
-  background-color: Style.$gold-accent;
+  background-color: Style.$purple-light;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.301);
   transition: 300ms ease;
 
@@ -71,21 +80,15 @@ onMounted(async () => {
   position: relative;
   display: flex;
   justify-content: center;
-
-  height: 20rem;
+  height: 30rem;
   cursor: pointer;
   border-radius: Style.$default-border-radius;
-  background-color: Style.$purple-primary;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.301);
   transition: 300ms ease;
 
   &:hover {
     background-color: Style.$purple-dark;
     transform: translateX(3px);
-  }
-
-  & img {
-    width: 10rem;
   }
 }
 
@@ -98,7 +101,7 @@ onMounted(async () => {
   top: 1rem;
 
   & p {
-    font-size: Style.$font-lg * 1.5;
+    font-size: Style.$font-lg * 1.4;
   }
 
   & hr {
@@ -106,5 +109,11 @@ onMounted(async () => {
     background-color: white;
     height: 0.3rem;
   }
+}
+
+.mach-type {
+  position: absolute;
+  width: 15rem;
+  bottom: 7rem;
 }
 </style>
