@@ -2,7 +2,7 @@
   <ClientOnly>
     <img v-if="staticImg" :src="Icons[staticImg]" :alt="staticImg" :class="className" />
 
-    <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj" />
+    <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj" :class="className" />
   </ClientOnly>
 </template>
 
