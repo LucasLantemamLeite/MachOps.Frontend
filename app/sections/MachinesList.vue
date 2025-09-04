@@ -105,7 +105,7 @@ function handlerBackgroundColor(machine){
   }
 
   & hr {
-    width: 10rem;
+    width: 20rem;
     background-color: white;
     height: 0.3rem;
   }
