@@ -1,4 +1,6 @@
-export const MachineType = {
+import type { Icons } from "./Icons";
+
+export const MachineType: Record<string, { label: string; icon: keyof typeof Icons; value: number }> = {
   Forklift: { label: "Empilhadeira", icon: "ForkliftIcon", value: 1 },
   Loader: { label: "Carregadeira", icon: "LoaderIcon", value: 2 },
   Excavator: { label: "Excavadeira", icon: "ExcavatorIcon", value: 3 },
