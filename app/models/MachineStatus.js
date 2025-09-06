@@ -1,5 +1,0 @@
-export const MachineStatus = {
-  Online: { label: "Operante", value: 1 },
-  Offline: { label: "Inoperante", value: 2 },
-  Maintenance: { label: "Manutenção", value: 3 },
-};
