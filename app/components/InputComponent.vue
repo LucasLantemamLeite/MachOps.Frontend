@@ -8,7 +8,7 @@ withDefaults(
   defineProps<{
     id?: string;
     name?: string;
-    type: string;
+    type?: string;
     textLabel?: string;
     placeHolder: string;
   }>(),
