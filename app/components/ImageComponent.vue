@@ -2,23 +2,22 @@
   <ClientOnly>
     <img v-if="staticImg" :src="Icons[staticImg]" :alt="staticImg" :class="className" />
 
-    <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj" :class="className" />
+    <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj.label" :class="className" />
   </ClientOnly>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ClientOnly } from "#components";
-import { Icons } from "~/models/Icons";
+import { Icons } from "~/Models/Icons";
 
-const props = defineProps({
-  staticImg: String,
-  className: String,
-  type: {
-    type: Object,
-    default: null,
-  },
-  imgKey: Number,
-});
+type typeObject = Record<string, { label: string; icon: keyof typeof Icons; value: number }>;
+
+const props = defineProps<{
+  staticImg?: keyof typeof Icons;
+  className?: string;
+  type?: typeObject;
+  imgKey?: number;
+}>();
 
 const foundObj = (() => {
   if (!props.type || !props.imgKey) return null;
