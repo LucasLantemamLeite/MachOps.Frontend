@@ -1,0 +1,69 @@
+@use "../../GlobalStyle.scss" as Style;
+
+.machinelist__div-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  padding: 2rem 1.5rem;
+}
+
+.machinelist__div-add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  cursor: pointer;
+  border-radius: Style.$default-border-radius;
+  background-color: Style.$purple-light;
+  box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
+  transition: 300ms ease;
+
+  &:hover {
+    background-color: Style.$gray-dark;
+    transform: translateX(3px);
+  }
+
+  img {
+    width: 7rem;
+  }
+}
+
+.machinelist__div-mach-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  height: 30rem;
+  cursor: pointer;
+  border-radius: Style.$default-border-radius;
+  box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
+  transition: 300ms ease;
+
+  &:hover {
+    transform: translateX(3px);
+  }
+
+  img {
+    position: absolute;
+    width: 15rem;
+    bottom: 7rem;
+  }
+}
+
+.machinelist__div-mach-title {
+  position: absolute;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    font-size: Style.$font-lg * 1.4;
+  }
+
+  hr {
+    width: 20rem;
+    background-color: white;
+    height: 0.3rem;
+  }
+}
