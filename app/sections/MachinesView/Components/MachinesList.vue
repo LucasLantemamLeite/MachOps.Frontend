@@ -68,13 +68,13 @@ onMounted(async () => {
 }
 
 .machineslist__div-mach-type {
-  width: 14rem;
+  width: 12rem;
 }
 
 .machinelist__div-mach-status {
   position: absolute;
   top: 1rem;
   left: 0.1rem;
-  width: 9rem;
+  width: 7rem;
 }
 </style>
