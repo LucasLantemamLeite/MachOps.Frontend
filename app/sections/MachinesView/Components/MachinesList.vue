@@ -6,8 +6,6 @@
     </div>
 
     <ImageComponent className="machineslist__div-mach-type" :type="MachineType" :imgKey="machine.type" />
-
-    <ImageComponent className="machinelist__div-mach-status" :type="MachineStatus" :imgKey="machine.status" />
   </div>
 </template>
 
@@ -15,7 +13,6 @@
 import { MachineType } from "~/Models/MachineType";
 import type { Machine } from "~/Models/Machine";
 import { GetAllMachines } from "../Script";
-import { MachineStatus } from "~/Models/MachineStatus";
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
@@ -69,12 +66,5 @@ onMounted(async () => {
 
 .machineslist__div-mach-type {
   width: 12rem;
-}
-
-.machinelist__div-mach-status {
-  position: absolute;
-  top: 1rem;
-  left: 0.1rem;
-  width: 7rem;
 }
 </style>
