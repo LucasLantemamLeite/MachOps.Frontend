@@ -1,7 +1,7 @@
 export interface Machine {
   id: number;
   name: string;
-  machineType: number;
+  type: number;
   status: number;
   createdAt: Date;
   lastUpdatedAt: Date;

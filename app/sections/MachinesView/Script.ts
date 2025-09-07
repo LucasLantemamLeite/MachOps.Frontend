@@ -14,5 +14,5 @@ export async function GetAllMachines() {
 }
 
 function sortMachinesByType(machines: Machine[]) {
-  return machines.sort((a, b) => a.machineType - b.machineType);
+  return machines.sort((a, b) => a.type - b.type);
 }
