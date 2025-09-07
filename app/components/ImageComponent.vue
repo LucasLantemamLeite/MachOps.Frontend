@@ -1,9 +1,7 @@
 <template>
-  <ClientOnly>
-    <img v-if="staticImg" :src="Icons[staticImg]" :alt="staticImg" :class="className" />
+  <img v-if="staticImg" :src="Icons[staticImg]" :alt="staticImg" :class="className" />
 
-    <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj.label" :class="className" />
-  </ClientOnly>
+  <img v-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj.label" :class="className" />
 </template>
 
 <script setup lang="ts">
