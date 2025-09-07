@@ -4,12 +4,12 @@
       <ImageComponent staticImg="AddIcon" />
     </div>
 
-    <MachineList />
+    <MachinesList />
   </div>
 </template>
 
 <script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
-import MachineList from "./Components/MachinesList.vue";
+import MachinesList from "./Components/MachinesList.vue";
 import "./MachinesViewStyle.scss";
 </script>
