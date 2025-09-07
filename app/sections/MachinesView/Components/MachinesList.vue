@@ -17,10 +17,13 @@ import type { Machine } from "~/Models/Machine";
 import { GetAllMachines } from "../Script";
 import { MachineStatus } from "~/Models/MachineStatus";
 
+const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
+const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
+
 const machines = ref<Machine[]>([]);
 
 onMounted(async () => {
-  const result = await GetAllMachines();
+  const result = await GetAllMachines(loading?.setIsLoading!, notification?.setNotification!);
   machines.value = result;
 });
 </script>
