@@ -1,13 +1,13 @@
 @use "../../GlobalStyle.scss" as Style;
 
-.machinelist__div-container {
+.machinesview__div-container {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   padding: 2rem 1.5rem;
 }
 
-.machinelist__div-add-card {
+.machinesview__div-add-card {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,13 +28,14 @@
   }
 }
 
-.machinelist__div-mach-card {
+.machineslist__div-mach-card {
   position: relative;
   display: flex;
   justify-content: center;
   height: 30rem;
   cursor: pointer;
   border-radius: Style.$default-border-radius;
+  background-color: Style.$purple-primary;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
   transition: 300ms ease;
 
@@ -49,7 +50,7 @@
   }
 }
 
-.machinelist__div-mach-title {
+.machineslist__div-mach-title {
   position: absolute;
   top: 1rem;
   display: flex;

@@ -1,6 +1,6 @@
 <template>
-  <div class="machinelist__div-container">
-    <div class="machinelist__div-add-card">
+  <div class="machinesview__div-container">
+    <div class="machinesview__div-add-card">
       <ImageComponent staticImg="AddIcon" />
     </div>
 
