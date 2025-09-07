@@ -10,6 +10,6 @@
 
 <script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
-import MachinesList from "./Components/MachinesList.vue";
+import MachinesList from "./components/MachinesList.vue";
 import "./MachinesViewStyle.scss";
 </script>
