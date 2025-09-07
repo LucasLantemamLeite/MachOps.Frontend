@@ -13,9 +13,6 @@ import Bulldozer from "~/Assets/Machines/Bulldozer.svg";
 import Crane from "~/Assets/Machines/Crane.svg";
 import AGV from "~/Assets/Machines/AGV.svg";
 import Skid from "~/Assets/Machines/Skid.svg";
-import OnlineFlag from "~/Assets/Flags/OnlineFlag.svg";
-import OfflineFlag from "~/Assets/Flags/OfflineFlag.svg";
-import MaintenanceFlag from "~/Assets/Flags/MaintenanceFlag.svg";
 
 export const Icons = {
   AppLogoIcon: AppLogo,
@@ -29,9 +26,6 @@ export const Icons = {
   CraneIcon: Crane,
   AGVIcon: AGV,
   SkidIcon: Skid,
-  OnlineFlagIcon: OnlineFlag,
-  OfflineFlagIcon: OfflineFlag,
-  MaintenanceFlagIcon: MaintenanceFlag,
   ConfirmIcon: Confirm,
   CancelIcon: Cancel,
   WarningIcon: Warning,
