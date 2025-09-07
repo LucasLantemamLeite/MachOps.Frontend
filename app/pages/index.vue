@@ -1,11 +1,11 @@
 <template>
   <NavBar />
-  <MachinesList />
+  <MachinesView />
 </template>
 
 <script setup lang="js">
-import MachinesList from "~/sections/MachinesList.vue";
-import NavBar from "~/sections/NavBar.vue";
+import NavBar from "~/Sections/NavBar/NavBar.vue";
+import MachinesView from "~/Sections/MachinesView/MachinesView.vue";
 </script>
 
 <style></style>
