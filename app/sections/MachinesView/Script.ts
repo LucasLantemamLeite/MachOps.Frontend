@@ -1,15 +1,22 @@
+import { AxiosError } from "axios";
 import type { Machine } from "~/Models/Machine";
 import { CallApiService } from "~/Services/CallApiService";
 
-export async function GetAllMachines() {
+export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
+  setIsLoading(true);
+
   try {
     const result = await CallApiService("GetAllMachines", null, 30);
-    console.log(result.data);
+    setNotification(result.message, "success", 5);
     return sortMachinesByType(result.data);
-  } catch (err) {
-    console.error(err);
+  } catch (err: unknown) {
+    if (err instanceof AxiosError) {
+      setNotification(err.message, "error", 4);
+    }
 
     return [];
+  } finally {
+    setIsLoading(false);
   }
 }
 
