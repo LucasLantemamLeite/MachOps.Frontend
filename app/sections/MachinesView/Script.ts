@@ -11,7 +11,7 @@ export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNoti
     return sortMachinesByType(result.data);
   } catch (err: unknown) {
     if (err instanceof AxiosError) {
-      setNotification(err.message, "error", 4);
+      setNotification(err.response?.data.message, "error", 4);
     }
 
     return [];
