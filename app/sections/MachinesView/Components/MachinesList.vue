@@ -44,6 +44,7 @@ onMounted(async () => {
 
   &:hover {
     transform: translateX(3px);
+    background-color: Style.$purple-dark;
   }
 }
 
