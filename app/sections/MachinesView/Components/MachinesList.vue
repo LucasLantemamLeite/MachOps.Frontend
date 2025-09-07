@@ -1,11 +1,11 @@
 <template>
-  <div v-for="machine in machines" :key="machine.id" class="machinelist__div-mach-card">
-    <div class="machinelist__div-mach-title">
+  <div v-for="machine in machines" :key="machine.id" class="machineslist__div-mach-card">
+    <div class="machineslist__div-mach-title">
       <p>{{ machine.name }}</p>
       <hr />
     </div>
 
-    <ImageComponent className="machinelist__div-machine-type" :type="MachineType" :imgKey="machine.machineType" />
+    <ImageComponent :type="MachineType" :imgKey="machine.machineType" />
   </div>
 </template>
 
