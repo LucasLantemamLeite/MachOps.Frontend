@@ -1,8 +1,9 @@
 <template>
-  <nav>
+  <nav class="navbar">
     <ImageComponent staticImg="AppLogoIcon" />
-    <div class="navbar__div-search">
-      <div class="navbar__div-icon-wrapper">
+
+    <div class="navbar__search">
+      <div class="navbar__icon-wrapper">
         <ImageComponent staticImg="SearchIcon" />
       </div>
       <InputComponent placeHolder="Buscar..." />
@@ -10,15 +11,15 @@
   </nav>
 </template>
 
-<script setup lang="js">
+<script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
-@use "../../GlobalStyle.scss" as Style;
+@use "../styles/GlobalStyle.scss" as Style;
 
-nav {
+.navbar {
   display: grid;
   position: sticky;
   top: 0;
@@ -33,50 +34,50 @@ nav {
   & img {
     width: 20rem;
   }
-}
 
-.navbar__div-search {
-  position: relative;
-  display: flex;
-  justify-self: center;
-  align-items: center;
+  &__search {
+    position: relative;
+    display: flex;
+    justify-self: center;
+    align-items: center;
 
-  & input {
-    width: 50rem;
-    outline: none;
-    border: none;
-    padding: 0.8rem;
-    padding-left: 4.7rem;
-    font-family: inherit;
-    font-size: Style.$font-xl;
-    font-weight: bold;
-    border-radius: Style.$default-border-radius;
-    box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
-    height: 100%; // garante altura total do input se necessário
-    box-sizing: border-box;
+    & input {
+      width: 50rem;
+      outline: none;
+      border: none;
+      padding: 0.8rem;
+      padding-left: 4.7rem;
+      font-family: inherit;
+      font-size: Style.$font-xl;
+      font-weight: bold;
+      border-radius: Style.$default-border-radius;
+      box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
+      height: 100%;
+      box-sizing: border-box;
 
-    &::selection {
-      background-color: Style.$purple-primary;
-      color: white;
+      &::selection {
+        background-color: Style.$purple-primary;
+        color: white;
+      }
     }
   }
-}
 
-.navbar__div-icon-wrapper {
-  position: absolute;
-  left: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 85%;
-  padding-right: 0.5rem;
-  border-right: 1px solid rgba(53, 52, 52, 0.644);
-  pointer-events: none;
+  &__icon-wrapper {
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    padding-right: 0.5rem;
+    border-right: 1px solid rgba(53, 52, 52, 0.644);
+    pointer-events: none;
 
-  & img {
-    width: 3.2rem;
+    & img {
+      width: 3.2rem;
+    }
   }
 }
 </style>
