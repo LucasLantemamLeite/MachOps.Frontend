@@ -1,6 +1,6 @@
 <template>
   <label v-if="textLabel && id" :for="id">{{ textLabel }}</label>
-  <input :id="id" :name="name" :type="type" :placeHolder="placeHolder" />
+  <input :class="className" :id="id" :name="name" :type="type" :placeHolder="placeHolder" />
 </template>
 
 <script setup lang="ts">
@@ -10,7 +10,8 @@ withDefaults(
     name?: string;
     type?: string;
     textLabel?: string;
-    placeHolder: string;
+    placeHolder?: string;
+    className?: string;
   }>(),
   {
     type: "text",
