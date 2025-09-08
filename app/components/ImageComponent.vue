@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { Icons } from "~/Models/Icons";
+import { Icons } from "~/models/Icons";
 
 type typeObject = Record<string, { label: string; icon: keyof typeof Icons; value: number }>;
 
