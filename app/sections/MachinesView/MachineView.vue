@@ -1,29 +1,34 @@
 <template>
-  <div class="machinesview__div-container">
-    <div class="machinesview__div-add-card">
+  <div class="machineview__div-container">
+    <div @click="isOpenCreate = true" class="machineview__div-add-card">
       <ImageComponent staticImg="AddIcon" />
     </div>
 
-    <MachinesList />
+    <MachineCard />
+
+    <CreateMachine :setIsOpen="(v) => (isOpenCreate = v)" v-if="isOpenCreate" />
   </div>
 </template>
 
 <script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
-import MachinesList from "./components/MachinesList.vue";
+import MachineCard from "./components/MachineCard.vue";
+import CreateMachine from "../CreateMachine/CreateMachine.vue";
+
+const isOpenCreate = ref(false);
 </script>
 
 <style lang="scss">
 @use "../../GlobalStyle.scss" as Style;
 
-.machinesview__div-container {
+.machineview__div-container {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   padding: 2rem 1.5rem;
 }
 
-.machinesview__div-add-card {
+.machineview__div-add-card {
   display: flex;
   justify-content: center;
   align-items: center;
