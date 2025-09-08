@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ApiRouter } from "~/Models/ApiRouter";
+import { ApiRouter } from "~/models/ApiRouter";
 
 const api = axios.create({
   baseURL: "http://localhost:5054/v1",
