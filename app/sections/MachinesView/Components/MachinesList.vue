@@ -1,11 +1,10 @@
 <template>
-  <div v-for="machine in machines" :key="machine.id" class="machineslist__div-mach-card">
-    <div class="machineslist__div-mach-title">
-      <p>{{ machine.name }}</p>
-      <hr />
-    </div>
+  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machineslist__div-mach-card">
+    <MachineTitle :machineName="machine.name" />
 
     <ImageComponent className="machineslist__div-mach-type" :type="MachineType" :imgKey="machine.type" />
+
+    <MachineStatus :machineStatus="machine.status" :status="machine.status" />
   </div>
 </template>
 
@@ -13,6 +12,8 @@
 import { MachineType } from "~/Models/MachineType";
 import type { Machine } from "~/Models/Machine";
 import { GetAllMachines } from "../Script";
+import MachineTitle from "./MachineTitle.vue";
+import MachineStatus from "./MachineStatus.vue";
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
@@ -29,9 +30,11 @@ onMounted(async () => {
 @use "../../../GlobalStyle.scss" as Style;
 
 .machineslist__div-mach-card {
-  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
   height: 30rem;
   cursor: pointer;
   border-radius: Style.$default-border-radius;
@@ -45,26 +48,7 @@ onMounted(async () => {
   }
 }
 
-.machineslist__div-mach-title {
-  position: absolute;
-  top: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  p {
-    font-size: Style.$font-lg * 1.4;
-  }
-
-  hr {
-    width: 20rem;
-    background-color: white;
-    height: 0.3rem;
-  }
-}
-
 .machineslist__div-mach-type {
-  width: 12rem;
+  width: 15rem;
 }
 </style>
