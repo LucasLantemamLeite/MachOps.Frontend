@@ -1,3 +1,21 @@
+<template>
+  <nav>
+    <ImageComponent staticImg="AppLogoIcon" />
+    <div class="navbar__div-search">
+      <div class="navbar__div-icon-wrapper">
+        <ImageComponent staticImg="SearchIcon" />
+      </div>
+      <InputComponent placeHolder="Buscar..." />
+    </div>
+  </nav>
+</template>
+
+<script setup lang="js">
+import ImageComponent from "~/components/ImageComponent.vue";
+import InputComponent from "~/components/InputComponent.vue";
+</script>
+
+<style lang="scss">
 @use "../../GlobalStyle.scss" as Style;
 
 nav {
@@ -34,6 +52,8 @@ nav {
     font-weight: bold;
     border-radius: Style.$default-border-radius;
     box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
+    height: 100%; // garante altura total do input se necessário
+    box-sizing: border-box;
 
     &::selection {
       background-color: Style.$purple-primary;
@@ -45,13 +65,18 @@ nav {
 .navbar__div-icon-wrapper {
   position: absolute;
   left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
+  justify-content: center;
   align-items: center;
-  border-right: 1px solid black;
+  height: 85%;
   padding-right: 0.5rem;
+  border-right: 1px solid rgba(53, 52, 52, 0.644);
+  pointer-events: none;
 
   & img {
     width: 3.2rem;
-    pointer-events: none;
   }
 }
+</style>
