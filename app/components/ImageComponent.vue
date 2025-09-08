@@ -5,7 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { ClientOnly } from "#components";
 import { Icons } from "~/Models/Icons";
 
 type typeObject = Record<string, { label: string; icon: keyof typeof Icons; value: number }>;
