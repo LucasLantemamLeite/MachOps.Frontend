@@ -1,6 +1,6 @@
 import { AxiosError } from "axios";
-import type { Machine } from "~/Models/Machine";
-import { CallApiService } from "~/Services/CallApiService";
+import type { Machine } from "~/models/Machine";
+import { CallApiService } from "~/services/CallApiService";
 
 export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
   setIsLoading(true);
