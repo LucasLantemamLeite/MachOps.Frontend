@@ -52,7 +52,7 @@ provide("notification", {
 </script>
 
 <style lang="scss">
-@use "../../GlobalStyle.scss" as Style;
+@use "../styles/GlobalStyle.scss" as Style;
 
 .notifcation__card {
   position: fixed;
