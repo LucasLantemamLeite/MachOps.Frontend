@@ -1,8 +1,8 @@
 <template>
-  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machineslist__div-mach-card">
+  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machinescard__div-mach-card">
     <MachineTitle :machineName="machine.name" />
 
-    <ImageComponent className="machineslist__div-mach-type" :type="MachineType" :imgKey="machine.type" />
+    <ImageComponent className="machinescard__div-mach-type" :type="MachineType" :imgKey="machine.type" />
 
     <MachineStatus :machineStatus="machine.status" :status="machine.status" />
   </div>
@@ -29,7 +29,7 @@ onMounted(async () => {
 <style lang="scss">
 @use "../../../GlobalStyle.scss" as Style;
 
-.machineslist__div-mach-card {
+.machinescard__div-mach-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,7 +48,7 @@ onMounted(async () => {
   }
 }
 
-.machineslist__div-mach-type {
+.machinescard__div-mach-type {
   width: 15rem;
 }
 </style>
