@@ -1,19 +1,19 @@
 <template>
-  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machinescard__div-mach-card">
-    <MachineTitle :machineName="machine.name" />
+  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machine-card">
+    <ViewTitle :machineName="machine.name" />
 
-    <ImageComponent className="machinescard__div-mach-type" :type="MachineType" :imgKey="machine.type" />
+    <ImageComponent class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
 
-    <MachineStatus :machineStatus="machine.status" :status="machine.status" />
+    <ViewStatus :machineStatus="machine.status" :status="machine.status" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { MachineType } from "~/Models/MachineType";
-import type { Machine } from "~/Models/Machine";
+import { MachineTypeModel } from "~/models/MachineTypeModel";
+import type { Machine } from "~/models/MachineModel";
 import { GetAllMachines } from "../Script";
-import MachineTitle from "./MachineTitle.vue";
-import MachineStatus from "./MachineStatus.vue";
+import ViewStatus from "./ViewStatus.vue";
+import ViewTitle from "./ViewTitle.vue";
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
@@ -27,9 +27,9 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-@use "../../../GlobalStyle.scss" as Style;
+@use "../../../styles/GlobalVariables.scss" as Var;
 
-.machinescard__div-mach-card {
+.machine-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,18 +37,18 @@ onMounted(async () => {
   gap: 1rem;
   height: 30rem;
   cursor: pointer;
-  border-radius: Style.$default-border-radius;
-  background-color: Style.$purple-primary;
+  border-radius: Var.$default-border-radius;
+  background-color: Var.$purple-primary;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
   transition: 300ms ease;
 
   &:hover {
     transform: translateX(3px);
-    background-color: Style.$purple-dark;
+    background-color: Var.$purple-dark;
   }
-}
 
-.machinescard__div-mach-type {
-  width: 15rem;
+  &__image {
+    width: 15rem;
+  }
 }
 </style>

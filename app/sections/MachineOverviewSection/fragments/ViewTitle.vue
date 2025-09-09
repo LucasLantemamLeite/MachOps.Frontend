@@ -9,16 +9,17 @@ defineProps<{ machineName: string }>();
 </script>
 
 <style lang="scss" scoped>
-@use "../../../GlobalStyle.scss" as Style;
+@use "../../../styles/GlobalVariables.scss" as Var;
 
 div {
   padding: 1rem;
   border: 3px solid;
-  border-radius: Style.$default-border-radius;
+  border-color: white;
+  border-radius: Var.$default-border-radius;
   box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.466);
 
   & p {
-    font-size: Style.$font-2xl;
+    font-size: Var.$font-2xl;
   }
 }
 </style>
