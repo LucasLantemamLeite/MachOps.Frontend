@@ -16,8 +16,8 @@ const props = defineProps<{
   imgKey?: number;
 }>();
 
-const foundObj = (() => {
-  if (!props.type || !props.imgKey) return null;
+const foundObj = computed(() => {
+  if (!props.type || props.imgKey === undefined) return null;
   return Object.values(props.type).find((v) => v.value === props.imgKey) ?? null;
-})();
+});
 </script>
