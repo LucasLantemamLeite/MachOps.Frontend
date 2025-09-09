@@ -17,7 +17,7 @@ import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
-@use "../styles/GlobalStyle.scss" as Style;
+@use "../styles/GlobalVariables.scss" as Var;
 
 .navbar {
   display: grid;
@@ -25,7 +25,7 @@ import InputComponent from "~/components/InputComponent.vue";
   top: 0;
   padding: 1.5rem 1.2rem;
   grid-template-columns: 0.1fr 1fr 0.1fr;
-  background-color: Style.$purple-primary;
+  background-color: Var.$purple-primary;
   justify-content: center;
   align-items: center;
   box-shadow: 0rem 0.2rem 0.6rem rgba(0, 0, 0, 0.418);
@@ -48,15 +48,15 @@ import InputComponent from "~/components/InputComponent.vue";
       padding: 0.8rem;
       padding-left: 4.7rem;
       font-family: inherit;
-      font-size: Style.$font-xl;
+      font-size: Var.$font-xl;
       font-weight: bold;
-      border-radius: Style.$default-border-radius;
+      border-radius: Var.$default-border-radius;
       box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
       height: 100%;
       box-sizing: border-box;
 
       &::selection {
-        background-color: Style.$purple-primary;
+        background-color: Var.$purple-primary;
         color: white;
       }
     }
