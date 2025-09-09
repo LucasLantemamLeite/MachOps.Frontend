@@ -1,12 +1,12 @@
 import { AxiosError } from "axios";
-import type { Machine } from "~/models/Machine";
-import { CallApiService } from "~/services/CallApiService";
+import type { Machine } from "~/models/MachineModel";
+import { callApiService } from "~/services/CallApiService";
 
 export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
   setIsLoading(true);
 
   try {
-    const result = await CallApiService("GetAllMachines", null, 30);
+    const result = await callApiService("GetAllMachines", null, 30);
     setNotification(result.message, "success", 5);
     return sortMachinesByType(result.data);
   } catch (err: unknown) {
@@ -26,4 +26,20 @@ export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNoti
 
 function sortMachinesByType(machines: Machine[]) {
   return machines.sort((a, b) => a.type - b.type);
+}
+
+export function getStatusColor(color: number) {
+  switch (color) {
+    case 1:
+      return "#00FF37";
+
+    case 2:
+      return "#ff0000";
+
+    case 3:
+      return "#FFF600";
+
+    default:
+      return "#00FF37";
+  }
 }
