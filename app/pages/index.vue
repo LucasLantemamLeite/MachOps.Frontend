@@ -1,15 +1,15 @@
 <template>
-  <NavBar />
+  <NavBarSection />
   <NotificationProvider>
     <LoadingProvider>
-      <MachineView />
+      <MachineOverviewSection />
     </LoadingProvider>
   </NotificationProvider>
 </template>
 
 <script setup lang="js">
-import NavBar from "~/Sections/NavBar/NavBar.vue";
-import MachineView from "~/Sections/MachinesView/MachineView.vue";
-import LoadingProvider from "~/Provider/LoadingProvider/LoadingProvider.vue";
-import NotificationProvider from "~/Provider/NotificationProvider/NotificationProvider.vue";
+import NavBarSection from "~/layouts/NavBarLayout.vue";
+import MachineOverviewSection from "~/sections/MachineOverviewSection/MachineOverviewSection.vue";
+import LoadingProvider from "~/providers/LoadingProvider.vue";
+import NotificationProvider from "~/providers/NotificationProvider.vue";
 </script>

@@ -9,7 +9,7 @@ import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
-@use "../../../GlobalStyle.scss" as Style;
+@use "../../../styles/GlobalVariables.scss" as Var;
 
 img {
   width: 20rem;
@@ -22,9 +22,17 @@ div {
 
 .createmachine__input-name {
   width: 35rem;
-  padding: 0.7rem;
+  padding: 0.9rem;
   border: none;
+  font-size: 1.6rem;
+  font-weight: inherit;
+  font-family: inherit;
   outline: none;
-  border-radius: Style.$default-border-radius;
+  border-radius: Var.$default-border-radius;
+
+  &::selection {
+    background-color: Var.$purple-primary;
+    color: white;
+  }
 }
 </style>
