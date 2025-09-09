@@ -2,11 +2,11 @@
   <div @click="setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
       <form class="machine-creator__form">
-        <ImageComponent staticImg="ExcavatorIcon" />
+        <ImageComponent :type="MachineTypeModel" :imgKey="machImg" />
 
         <CreateName />
 
-        <CreateType />
+        <CreateType :onChange="handlerMachIcon" />
 
         <CreateStatus />
       </form>
@@ -15,9 +15,16 @@
 </template>
 
 <script setup lang="ts">
+import { MachineTypeModel } from "~/models/MachineTypeModel";
 import CreateName from "./fragments/CreateName.vue";
 import CreateStatus from "./fragments/CreateStatus.vue";
 import CreateType from "./fragments/CreateType.vue";
+
+const machImg = ref(1);
+
+function handlerMachIcon(value: number) {
+  machImg.value = value;
+}
 
 defineProps<{
   setIsOpen: (v: boolean) => void;
