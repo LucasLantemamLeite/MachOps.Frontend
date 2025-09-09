@@ -52,7 +52,7 @@ provide("notification", {
 </script>
 
 <style lang="scss">
-@use "../../GlobalStyle.scss" as Style;
+@use "../styles/GlobalVariables.scss" as Var;
 
 .notifcation__card {
   position: fixed;
@@ -66,11 +66,11 @@ provide("notification", {
   gap: 2rem;
   padding: 2rem;
   z-index: 2;
-  border-radius: Style.$default-border-radius;
+  border-radius: Var.$default-border-radius;
   width: 100%;
   pointer-events: none;
   max-width: 30rem;
-  background-color: Style.$gray-dark;
+  background-color: Var.$gray-dark;
   transform: translateX(20px);
   transition: transform 200ms ease, opacity 0.3s ease;
   opacity: 1;
