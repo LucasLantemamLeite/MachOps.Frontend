@@ -1,12 +1,16 @@
 <template>
   <div>
-    <SelectComponent name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" className="machine-creator__type" />
+    <SelectComponent :onChange="onChange" name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" className="machine-creator__type" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
 import SelectComponent from "~/components/SelectComponent.vue";
+
+defineProps<{
+  onChange: (value: number) => void;
+}>();
 </script>
 
 <style lang="scss">
