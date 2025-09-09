@@ -1,16 +1,16 @@
 <template>
-  <img v-if="staticImg" :src="Icons[staticImg]" :alt="staticImg" :class="className" />
+  <img v-if="staticImg" :src="IconsModel[staticImg]" :alt="staticImg" :class="className" />
 
-  <img v-else-if="foundObj" :src="Icons[foundObj.icon]" :alt="foundObj.label" :class="className" />
+  <img v-else-if="foundObj" :src="IconsModel[foundObj.icon]" :alt="foundObj.label" :class="className" />
 </template>
 
 <script setup lang="ts">
-import { Icons } from "~/models/Icons";
+import { IconsModel } from "~/models/IconsModel";
 
-type typeObject = Record<string, { label: string; icon: keyof typeof Icons; value: number }>;
+type typeObject = Record<string, { label: string; icon: keyof typeof IconsModel; value: number }>;
 
 const props = defineProps<{
-  staticImg?: keyof typeof Icons;
+  staticImg?: keyof typeof IconsModel;
   className?: string;
   type?: typeObject;
   imgKey?: number;
