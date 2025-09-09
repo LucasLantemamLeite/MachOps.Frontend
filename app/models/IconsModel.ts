@@ -14,7 +14,7 @@ import Crane from "~/assets/machines/Crane.svg";
 import AGV from "~/assets/machines/AGV.svg";
 import Skid from "~/assets/machines/Skid.svg";
 
-export const Icons = {
+export const IconsModel = {
   AppLogoIcon: AppLogo,
   SearchIcon: Search,
   AddIcon: Add,
