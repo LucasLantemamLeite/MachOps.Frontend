@@ -18,7 +18,7 @@
   padding: 1rem 4rem;
   background-color: Var.$purple-dark;
   width: 60rem;
-  height: 70rem;
+  height: 90rem;
   border-radius: Var.$default-border-radius;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.514);
 }
@@ -39,7 +39,7 @@
   }
 }
 
-.machine-creator__name {
+.machine-creator__input {
   display: flex;
   flex-direction: column;
   width: 100%;
