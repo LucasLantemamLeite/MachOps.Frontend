@@ -4,7 +4,7 @@
       <form class="machine-creator__form">
         <MachPreview :machName="machine.name" :machType="machine.type" :machStatus="machine.status" />
 
-        <div class="machine-creator__name">
+        <div class="machine-creator__input">
           <InputComponent :onChange="handlerMachName" id="name" name="name" textLabel="Nome:" :maxLenght="30" />
         </div>
 
@@ -14,6 +14,10 @@
 
         <div class="machine-creator__select">
           <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status: " :type="MachineStatusModel" />
+        </div>
+
+        <div class="machine-creator__input">
+          <InputComponent name="location" id="location" textLabel="Localização:" :maxLenght="50" />
         </div>
       </form>
     </div>
