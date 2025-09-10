@@ -2,13 +2,19 @@
   <div @click="setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
       <form class="machine-creator__form">
-        <ImageComponent :type="MachineTypeModel" :imgKey="machImg" />
+        <MachPreview :machName="machine.name" :machType="machine.type" :machStatus="machine.status" />
 
-        <CreateName />
+        <div class="machine-creator__name">
+          <InputComponent :onChange="handlerMachName" id="name" name="name" textLabel="Nome:" :maxLenght="30" />
+        </div>
 
-        <CreateType :onChange="handlerMachIcon" />
+        <div class="machine-creator__select">
+          <SelectComponent :onChange="handlerMachIcon" name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" />
+        </div>
 
-        <CreateStatus />
+        <div class="machine-creator__select">
+          <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status: " :type="MachineStatusModel" />
+        </div>
       </form>
     </div>
   </div>
@@ -16,57 +22,35 @@
 
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
-import CreateName from "./fragments/CreateName.vue";
-import CreateStatus from "./fragments/CreateStatus.vue";
-import CreateType from "./fragments/CreateType.vue";
+import { MachineStatusModel } from "~/models/MachineStatusModel";
+import InputComponent from "~/components/InputComponent.vue";
+import MachPreview from "./fragments/MachPreview.vue";
+import "./MachineCreatorStyle.scss";
 
-const machImg = ref(1);
+const machine = reactive({
+  name: "Nome da máquina",
+  type: 1,
+  status: 1,
+});
 
 function handlerMachIcon(value: number) {
-  machImg.value = value;
+  machine.type = value;
+}
+
+function handlerMachName(name: string) {
+  if (!name || name.trim().length === 0) {
+    machine.name = "Nome da máquina...";
+    return;
+  }
+
+  if (name.length <= 30) machine.name = name;
+}
+
+function handerMachStatus(status: number) {
+  machine.status = status;
 }
 
 defineProps<{
   setIsOpen: (v: boolean) => void;
 }>();
 </script>
-
-<style lang="scss">
-@use "../../styles/GlobalVariables.scss" as Var;
-
-.machine-creator {
-  &__background {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    inset: 0;
-    backdrop-filter: blur(3px);
-    background-color: rgba(0, 0, 0, 0.692);
-    z-index: 20;
-  }
-
-  &__box {
-    display: flex;
-    align-items: center;
-    padding: 3rem;
-    background-color: Var.$purple-primary;
-    width: 50rem;
-    height: 70rem;
-    border-radius: Var.$default-border-radius;
-    box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.514);
-  }
-
-  &__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    width: 35rem;
-
-    label {
-      font-size: 1.4rem;
-    }
-  }
-}
-</style>
