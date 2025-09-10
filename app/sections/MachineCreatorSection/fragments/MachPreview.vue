@@ -32,13 +32,13 @@ defineProps<{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  margin-bottom: 4rem;
+  gap: 1rem;
+  margin-bottom: 2rem;
   background-color: Var.$purple-primary;
   padding: 1rem;
   border: 1px solid white;
   box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
-  width: 45rem;
+  width: 37rem;
   border-radius: Var.$default-border-radius;
 }
 
