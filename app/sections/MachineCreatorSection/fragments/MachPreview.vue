@@ -4,7 +4,7 @@
 
     <PreviewName :machineName="machName" />
 
-    <ImageComponent :type="MachineTypeModel" :imgKey="machType" />
+    <PreviewType :type="MachineTypeModel" :imgKey="machType" />
 
     <PreviewStatus :status="machStatus" />
   </div>
@@ -12,6 +12,7 @@
 
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
+import PreviewType from "~/components/ImageComponent.vue";
 import PreviewName from "~/components/NameComponent.vue";
 import PreviewStatus from "~/components/StatusComponent.vue";
 
