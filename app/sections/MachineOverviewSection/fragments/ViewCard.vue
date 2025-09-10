@@ -36,7 +36,7 @@ onMounted(async () => {
   align-items: center;
   padding: 1rem;
   gap: 1rem;
-  height: 30rem;
+  height: 26rem;
   cursor: pointer;
   border-radius: Var.$default-border-radius;
   background-color: Var.$purple-primary;
@@ -49,7 +49,7 @@ onMounted(async () => {
   }
 
   &__image {
-    width: 15rem;
+    width: 12rem;
   }
 }
 </style>
