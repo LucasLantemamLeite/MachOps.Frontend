@@ -33,7 +33,7 @@ div {
   box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.466);
 
   & p {
-    font-size: Var.$font-2xl;
+    font-size: Var.$font-sm * 1.8;
   }
 }
 </style>
