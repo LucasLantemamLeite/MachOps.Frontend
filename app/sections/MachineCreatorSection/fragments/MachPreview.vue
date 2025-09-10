@@ -12,8 +12,8 @@
 
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
-import PreviewName from "./PreviewName.vue";
-import PreviewStatus from "./PreviewStatus.vue";
+import PreviewName from "~/components/NameComponent.vue";
+import PreviewStatus from "~/components/StatusComponent.vue";
 
 defineProps<{
   machName: string;
