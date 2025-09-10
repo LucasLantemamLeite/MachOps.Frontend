@@ -2,18 +2,19 @@
   <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machine-card">
     <ViewTitle :machineName="machine.name" />
 
-    <ImageComponent class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
+    <ViewType class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
 
-    <ViewStatus :machineStatus="machine.status" :status="machine.status" />
+    <ViewStatus :status="machine.status" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
 import type { Machine } from "~/models/MachineModel";
+import ViewType from "~/components/ImageComponent.vue";
 import { GetAllMachines } from "../Script";
-import ViewStatus from "./ViewStatus.vue";
-import ViewTitle from "./ViewTitle.vue";
+import ViewStatus from "~/components/StatusComponent.vue";
+import ViewTitle from "../../../components/NameComponent.vue";
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
