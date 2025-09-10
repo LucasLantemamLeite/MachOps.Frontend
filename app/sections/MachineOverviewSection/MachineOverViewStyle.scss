@@ -1,0 +1,29 @@
+@use "../../styles//GlobalVariables.scss" as Var;
+
+.machine-overview__container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  padding: 2rem 1.5rem;
+}
+
+.machine-overview__add-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30rem;
+  cursor: pointer;
+  border-radius: Var.$default-border-radius;
+  background-color: Var.$purple-light;
+  box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
+  transition: 300ms ease;
+
+  &:hover {
+    background-color: Var.$gray-dark;
+    transform: translateX(3px);
+  }
+
+  img {
+    width: 12rem;
+  }
+}
