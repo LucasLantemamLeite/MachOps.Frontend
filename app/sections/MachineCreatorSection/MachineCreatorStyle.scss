@@ -1,5 +1,36 @@
 @use "../../styles/GlobalVariables.scss" as Var;
 
+@mixin form-element-style {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: inherit;
+  font-family: inherit;
+  outline: none;
+  box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
+  border-radius: Var.$default-border-radius;
+  border: 1px solid white;
+  background-color: Var.$gray-dark;
+  color: white;
+}
+
+@mixin button-base($bg-color) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: inherit;
+  font-size: Var.$font-lg * 1.5;
+  border-radius: Var.$default-border-radius;
+  border: none;
+  gap: 1.5rem;
+  padding: 0.5rem;
+  background-color: $bg-color;
+  cursor: pointer;
+  box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.349);
+}
+
 .machine-creator__background {
   position: fixed;
   display: flex;
@@ -18,7 +49,7 @@
   padding: 1rem;
   background-color: Var.$purple-dark;
   width: 60rem;
-  height: 90rem;
+  height: 92rem;
   border-radius: Var.$default-border-radius;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.514);
 }
@@ -45,18 +76,7 @@
   width: 100%;
 
   & input {
-    width: 100%;
-    padding: 0.9rem;
-    border: none;
-    font-size: 1.6rem;
-    font-weight: inherit;
-    font-family: inherit;
-    outline: none;
-    box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
-    border-radius: Var.$default-border-radius;
-    border: 1px solid white;
-    background-color: Var.$gray-dark;
-    color: white;
+    @include form-element-style;
 
     &::selection {
       background-color: Var.$purple-primary;
@@ -64,22 +84,12 @@
     }
   }
 }
+
 .machine-creator__select {
   width: 100%;
 
   & select {
-    width: 100%;
-    box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
-    padding: 0.9rem;
-    border: none;
-    font-size: 1.6rem;
-    font-weight: inherit;
-    font-family: inherit;
-    outline: none;
-    border-radius: Var.$default-border-radius;
-    border: 1px solid white;
-    background-color: Var.$gray-dark;
-    color: white;
+    @include form-element-style;
   }
 }
 
@@ -89,22 +99,11 @@
   width: 100%;
 
   & textarea {
-    width: 100%;
+    @include form-element-style;
     resize: vertical;
-    padding: 0.9rem;
-    border: none;
     height: 4rem;
     min-height: 4rem;
     max-height: 8rem;
-    font-size: 1.6rem;
-    font-weight: inherit;
-    font-family: inherit;
-    outline: none;
-    box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
-    border-radius: Var.$default-border-radius;
-    border: 1px solid white;
-    background-color: Var.$gray-dark;
-    color: white;
 
     &::selection {
       background-color: Var.$purple-primary;
@@ -124,19 +123,46 @@
     width: 100%;
 
     & input {
+      @include form-element-style;
       width: 21.5rem;
       text-align: center;
-      box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
       padding: 0.7rem;
-      border: none;
       font-size: 1.4rem;
-      font-weight: inherit;
-      font-family: inherit;
-      outline: none;
-      border-radius: Var.$default-border-radius;
-      border: 1px solid white;
-      background-color: Var.$gray-dark;
-      color: white;
+    }
+  }
+}
+
+.machine-creator__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5rem;
+  margin-top: 2rem;
+
+  &-confirm {
+    @include button-base(rgb(18, 134, 18));
+    transition: 200ms ease;
+
+    &:hover {
+      background-color: rgb(4, 92, 4);
+    }
+
+    & img {
+      width: 4rem;
+    }
+  }
+
+  &-cancel {
+    @include button-base(rgb(180, 12, 12));
+    transition: 300ms ease;
+
+    &:hover {
+      background-color: rgb(126, 8, 8);
+    }
+
+    & img {
+      width: 4rem;
     }
   }
 }
