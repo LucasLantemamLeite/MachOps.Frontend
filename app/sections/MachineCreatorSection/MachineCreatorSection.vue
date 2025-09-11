@@ -1,7 +1,7 @@
 <template>
   <div @click="setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
-      <form class="machine-creator__form">
+      <form class="machine-creator__form" @submit.prevent>
         <MachPreview :machName="machine.name" :machType="machine.type" :machStatus="machine.status" />
 
         <div class="machine-creator__input">
@@ -32,6 +32,11 @@
             <InputComponent name="return" id="return" type="date" textLabel="Retorno:" />
           </div>
         </div>
+
+        <div class="machine-creator__button">
+          <ButtonComponent className="machine-creator__button-confirm" icon="ConfirmIcon">Adicionar</ButtonComponent>
+          <ButtonComponent className="machine-creator__button-cancel" @click="setIsOpen(false)" icon="CancelIcon">Cancelar</ButtonComponent>
+        </div>
       </form>
     </div>
   </div>
@@ -43,6 +48,7 @@ import { MachineStatusModel } from "~/models/MachineStatusModel";
 import TextAreaComponent from "~/components/TextAreaComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
+import ButtonComponent from "~/components/ButtonComponent.vue";
 import "./MachineCreatorStyle.scss";
 
 const machine = reactive({
