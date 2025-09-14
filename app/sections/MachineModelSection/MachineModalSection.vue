@@ -49,7 +49,7 @@ import TextAreaComponent from "~/components/TextAreaComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
-import { createNewMachine } from "./Script";
+import { createNewMachine, updateExistingMachine } from "./Script";
 import type { Machine } from "~/models/MachineModel";
 import "./MachineModalStyle.scss";
 
@@ -88,7 +88,10 @@ function handerMachStatus(status: number) {
 
 function onSubmit(e: SubmitEvent) {
   if (!loading || !notification) return;
-  createNewMachine(e, loading.setIsLoading, notification.setNotification);
+
+  if (machine.id === null) createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification });
+
+  if (machine.id !== null) updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification });
 }
 
 onMounted(() => {
