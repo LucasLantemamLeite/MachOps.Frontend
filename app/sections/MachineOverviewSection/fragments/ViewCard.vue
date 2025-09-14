@@ -28,28 +28,26 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
+@use "../../../styles/GlobalMixins.scss" as Mix;
 @use "../../../styles/GlobalVariables.scss" as Var;
 
 .machine-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
-  height: 26rem;
+  @include Mix.div-field-base($display: flex, $direction: column, $gap: 1rem);
+  @include Mix.align-field-base($align: center);
+  @include Mix.spacing-field-base($padding: 1rem);
+  @include Mix.size-field-base($height: 26rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+  @include Mix.colors-field-base($background: Var.$purple-primary, $background-hover: Var.$purple-dark);
   cursor: pointer;
-  border-radius: Var.$default-border-radius;
-  background-color: Var.$purple-primary;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
   transition: 300ms ease;
 
   &:hover {
     transform: translateX(3px);
-    background-color: Var.$purple-dark;
   }
 
   &__image {
-    width: 12rem;
+    @include Mix.size-field-base($width: 12rem);
   }
 }
 </style>
