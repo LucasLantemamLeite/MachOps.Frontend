@@ -1,5 +1,5 @@
 <template>
-  <div @click="setIsOpen(false)" class="machine-creator__background">
+  <div @click="props.setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
       <form class="machine-creator__form" @submit.prevent="onSubmit">
         <MachPreview :machName="machine.name || 'Nome da máquina...'" :machType="machine.type" :machStatus="machine.status" />
@@ -9,11 +9,11 @@
         </div>
 
         <div class="machine-creator__select">
-          <SelectComponent :onChange="handlerMachIcon" name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" :value="machine.type" />
+          <SelectComponent :onChange="handlerMachIcon" name="type" id="type" textLabel="Tipo:" :type="MachineTypeModel" :value="machine.type" />
         </div>
 
         <div class="machine-creator__select">
-          <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status: " :type="MachineStatusModel" :value="machine.status" />
+          <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status:" :type="MachineStatusModel" :value="machine.status" />
         </div>
 
         <div class="machine-creator__input">
@@ -34,24 +34,32 @@
         </div>
 
         <div class="machine-creator__button">
-          <ButtonComponent className="machine-creator__button-confirm" type="submit" icon="ConfirmIcon">{{ props.machine?.id ? "Atualizar" : "Adicionar" }}</ButtonComponent>
-          <ButtonComponent className="machine-creator__button-exclude" @click="handleRemoveMachine" icon="Exclude" v-if="machine.id">Excluir</ButtonComponent>
-          <ButtonComponent className="machine-creator__button-cancel" @click="setIsOpen(false)" icon="CancelIcon">Cancelar</ButtonComponent>
+          <ButtonComponent className="machine-creator__button-confirm" type="submit" icon="ConfirmIcon">
+            {{ props.machine?.id ? "Atualizar" : "Adicionar" }}
+          </ButtonComponent>
+
+          <ButtonComponent className="machine-creator__button-exclude" icon="Exclude" v-if="machine.id" @click="confirm.isOpen = true"> Excluir </ButtonComponent>
+
+          <ButtonComponent className="machine-creator__button-cancel" @click="props.setIsOpen(false)" icon="CancelIcon"> Cancelar </ButtonComponent>
         </div>
       </form>
+
+      <ConfirmRemove v-if="confirm.isOpen" :machine="machine.name" :setConfirmOpen="(v) => (confirm.isOpen = v)" :onConfirm="onConfirmDelete" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { reactive, onMounted, onUnmounted, inject } from "vue";
 import { MachineTypeModel } from "~/models/MachineTypeModel";
 import { MachineStatusModel } from "~/models/MachineStatusModel";
-import TextAreaComponent from "~/components/TextAreaComponent.vue";
-import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
+import InputComponent from "~/components/InputComponent.vue";
+import TextAreaComponent from "~/components/TextAreaComponent.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
-import { createNewMachine, updateExistingMachine, removeExistingMachine } from "./Script";
+import ConfirmRemove from "./fragments/ConfirmRemove.vue";
 import type { Machine } from "~/models/MachineModel";
+import { createNewMachine, updateExistingMachine, removeExistingMachine } from "./Script";
 import "./MachineModalStyle.scss";
 
 const props = defineProps<{
@@ -72,6 +80,10 @@ const machine = reactive<Machine>({
   return: props.machine?.return ? new Date(props.machine.return).toISOString().split("T")[0] : null,
 });
 
+const confirm = reactive({
+  isOpen: false,
+});
+
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
 
@@ -90,19 +102,23 @@ function handerMachStatus(status: number) {
 function onSubmit(e: SubmitEvent) {
   if (!loading || !notification) return;
 
-  if (machine.id === null) createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
-
-  if (machine.id !== null) updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
+  if (machine.id === null) {
+    createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
+  } else {
+    updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
+  }
 }
 
-async function handleRemoveMachine() {
+function onConfirmDelete() {
   if (!loading || !notification || !machine.id) return;
 
-  await removeExistingMachine(machine.id, {
+  removeExistingMachine(machine.id, {
     setIsLoading: loading.setIsLoading,
     setNotification: notification.setNotification,
     setIsOpen: props.setIsOpen,
   });
+
+  confirm.isOpen = false;
 }
 
 onMounted(() => {
