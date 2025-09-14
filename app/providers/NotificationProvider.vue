@@ -52,25 +52,21 @@ provide("notification", {
 </script>
 
 <style lang="scss">
+@use "../styles/GlobalMixins.scss" as Mix;
 @use "../styles/GlobalVariables.scss" as Var;
 
 .notifcation__card {
-  position: fixed;
-  display: flex;
+  @include Mix.div-field-base($display: flex, $direction: column, $gap: 2rem);
+  @include Mix.position-field-base($position: fixed, $bottom: 1rem, $right: 1rem);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.spacing-field-base($padding: 2rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+  @include Mix.size-field-base($width: 100%);
+  @include Mix.colors-field-base($background: Var.$gray-dark);
   text-align: center;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  bottom: 1rem;
-  right: 1rem;
-  gap: 2rem;
-  padding: 2rem;
   z-index: 2;
-  border-radius: Var.$default-border-radius;
-  width: 100%;
   pointer-events: none;
   max-width: 30rem;
-  background-color: Var.$gray-dark;
   transform: translateX(20px);
   transition: transform 200ms ease, opacity 0.3s ease;
   opacity: 1;

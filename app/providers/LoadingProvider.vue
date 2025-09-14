@@ -20,19 +20,20 @@ provide("loading", {
 </script>
 
 <style lang="scss">
+@use "../styles/GlobalMixins.scss" as Mix;
+
 .loading__background {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
+  @include Mix.div-field-base($display: flex);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.position-field-base($position: fixed);
+  @include Mix.colors-field-base($background: rgba(0, 0, 0, 0.61));
   inset: 0;
   backdrop-filter: blur(3px);
-  background-color: rgba(0, 0, 0, 0.61);
   z-index: 3;
 }
 
 .loading__spinner {
-  width: 25rem;
+  @include Mix.size-field-base($width: 25rem);
   animation: animation-spinner 1s linear infinite;
 }
 
