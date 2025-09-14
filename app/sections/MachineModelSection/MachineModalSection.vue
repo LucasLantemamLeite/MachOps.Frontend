@@ -35,6 +35,7 @@
 
         <div class="machine-creator__button">
           <ButtonComponent className="machine-creator__button-confirm" icon="ConfirmIcon">{{ props.machine?.id ? "Atualizar" : "Adicionar" }}</ButtonComponent>
+          <ButtonComponent className="machine-creator__button-exclude" icon="Exclude" v-if="machine.id">Excluir</ButtonComponent>
           <ButtonComponent className="machine-creator__button-cancel" @click="setIsOpen(false)" icon="CancelIcon">Cancelar</ButtonComponent>
         </div>
       </form>
