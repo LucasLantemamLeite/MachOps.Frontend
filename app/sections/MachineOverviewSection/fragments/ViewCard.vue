@@ -15,6 +15,8 @@ import { getAllMachines } from "../Script";
 import ViewType from "~/components/ImageComponent.vue";
 import ViewStatus from "~/components/StatusComponent.vue";
 import ViewTitle from "../../../components/NameComponent.vue";
+import { sortMachinesByType } from "../Script";
+import * as signalR from "@microsoft/signalr";
 
 const props = defineProps<{ filter?: string }>();
 
@@ -23,9 +25,37 @@ const machines = ref<Machine[]>([]);
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
 
+let connection: signalR.HubConnection;
+
 onMounted(async () => {
   const result = await getAllMachines(loading?.setIsLoading!, notification?.setNotification!);
   machines.value = result;
+
+  connection = new signalR.HubConnectionBuilder().withUrl("http://localhost:5054/v1/machineHub").withAutomaticReconnect().build();
+
+  connection.off("MachineUpdated");
+  connection.on("MachineUpdated", (updatedMachine: Machine) => {
+    const index = machines.value.findIndex((m) => m.id == updatedMachine.id);
+
+    if (index !== -1) machines.value[index] = updatedMachine;
+
+    machines.value = sortMachinesByType(machines.value);
+  });
+
+  connection.off("MachineCreated");
+  connection.on("MachineCreated", (createdMachine: Machine) => {
+    const exists = machines.value.find((m) => m.id === createdMachine.id);
+    if (!exists) {
+      machines.value.push(createdMachine);
+      machines.value = sortMachinesByType(machines.value);
+    }
+  });
+
+  try {
+    await connection.start();
+  } catch (err) {
+    notification?.setNotification(String(err), "warning", 5);
+  }
 });
 
 const filteredMachines = computed(() => {
