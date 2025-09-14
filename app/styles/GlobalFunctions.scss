@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function scale-percent($value, $percent) {
-  @return $value * (1 + $percent / 100);
+  @return $value * (1 + math.div($percent, 100));
 }
