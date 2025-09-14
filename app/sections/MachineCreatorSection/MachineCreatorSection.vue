@@ -2,34 +2,34 @@
   <div @click="setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
       <form class="machine-creator__form" @submit.prevent="onSubmit">
-        <MachPreview :machName="machine.name" :machType="machine.type" :machStatus="machine.status" />
+        <MachPreview :machName="machine.name || 'Nome da máquina...'" :machType="machine.type" :machStatus="machine.status" />
 
         <div class="machine-creator__input">
-          <InputComponent :onChange="handlerMachName" id="name" name="name" textLabel="Nome:" :maxLenght="30" />
+          <InputComponent :onChange="handlerMachName" id="name" name="name" textLabel="Nome:" :maxLenght="30" :value="machine.name" />
         </div>
 
         <div class="machine-creator__select">
-          <SelectComponent :onChange="handlerMachIcon" name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" />
+          <SelectComponent :onChange="handlerMachIcon" name="type" id="type" textLabel="Tipo: " :type="MachineTypeModel" :value="machine.type" />
         </div>
 
         <div class="machine-creator__select">
-          <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status: " :type="MachineStatusModel" />
+          <SelectComponent :onChange="handerMachStatus" name="status" id="status" textLabel="Status: " :type="MachineStatusModel" :value="machine.status" />
         </div>
 
         <div class="machine-creator__input">
-          <InputComponent name="location" id="location" textLabel="Localização:" :maxLenght="50" />
+          <InputComponent name="location" id="location" textLabel="Localização:" :maxLenght="50" :value="machine.location" />
         </div>
 
         <div class="machine-creator__label">
-          <TextAreaComponent name="description" id="description" textLabel="Descrição:" :maxLenght="100" />
+          <TextAreaComponent name="description" id="description" textLabel="Descrição:" :maxLenght="100" :value="machine.description" />
         </div>
 
         <div class="machine-creator__date">
           <div class="machine-creator__start">
-            <InputComponent name="start" id="start" type="date" textLabel="Início:" />
+            <InputComponent name="start" id="start" type="date" textLabel="Início:" :value="machine.start" />
           </div>
           <div class="machine-creator__return">
-            <InputComponent name="return" id="return" type="date" textLabel="Retorno:" />
+            <InputComponent name="return" id="return" type="date" textLabel="Retorno:" :value="machine.return" />
           </div>
         </div>
 
@@ -51,16 +51,25 @@ import MachPreview from "./fragments/MachPreview.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
 import { createNewMachine } from "./Script";
 import "./MachineCreatorStyle.scss";
+import type { Machine } from "~/models/MachineModel";
 
-const machine = reactive({
-  name: "Nome da máquina",
-  type: 1,
-  status: 1,
-});
-
-defineProps<{
+const props = defineProps<{
   setIsOpen: (v: boolean) => void;
+  machine?: Machine | null;
 }>();
+
+const machine = reactive<Machine>({
+  id: props.machine?.id ?? null,
+  name: props.machine?.name ?? "",
+  type: props.machine?.type ?? 1,
+  status: props.machine?.status ?? 1,
+  createdAt: props.machine?.createdAt ?? new Date(),
+  lastUpdatedAt: props.machine?.lastUpdatedAt ?? new Date(),
+  location: props.machine?.location ?? null,
+  description: props.machine?.description ?? null,
+  start: props.machine?.start ?? null,
+  return: props.machine?.return ?? null,
+});
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
@@ -70,11 +79,7 @@ function handlerMachIcon(value: number) {
 }
 
 function handlerMachName(name: string) {
-  if (!name?.trim()) {
-    machine.name = "Nome da máquina...";
-    return;
-  }
-  if (name.length <= 30) machine.name = name;
+  machine.name = name;
 }
 
 function handerMachStatus(status: number) {
