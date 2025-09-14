@@ -34,8 +34,8 @@
         </div>
 
         <div class="machine-creator__button">
-          <ButtonComponent className="machine-creator__button-confirm" icon="ConfirmIcon">{{ props.machine?.id ? "Atualizar" : "Adicionar" }}</ButtonComponent>
-          <ButtonComponent className="machine-creator__button-exclude" icon="Exclude" v-if="machine.id">Excluir</ButtonComponent>
+          <ButtonComponent className="machine-creator__button-confirm" type="submit" icon="ConfirmIcon">{{ props.machine?.id ? "Atualizar" : "Adicionar" }}</ButtonComponent>
+          <ButtonComponent className="machine-creator__button-exclude" @click="handleRemoveMachine" icon="Exclude" v-if="machine.id">Excluir</ButtonComponent>
           <ButtonComponent className="machine-creator__button-cancel" @click="setIsOpen(false)" icon="CancelIcon">Cancelar</ButtonComponent>
         </div>
       </form>
@@ -50,7 +50,7 @@ import TextAreaComponent from "~/components/TextAreaComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
-import { createNewMachine, updateExistingMachine } from "./Script";
+import { createNewMachine, updateExistingMachine, removeExistingMachine } from "./Script";
 import type { Machine } from "~/models/MachineModel";
 import "./MachineModalStyle.scss";
 
@@ -93,6 +93,16 @@ function onSubmit(e: SubmitEvent) {
   if (machine.id === null) createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
 
   if (machine.id !== null) updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
+}
+
+async function handleRemoveMachine() {
+  if (!loading || !notification || !machine.id) return;
+
+  await removeExistingMachine(machine.id, {
+    setIsLoading: loading.setIsLoading,
+    setNotification: notification.setNotification,
+    setIsOpen: props.setIsOpen,
+  });
 }
 
 onMounted(() => {
