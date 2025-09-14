@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machines" v-for="machine in filteredMachines" :key="machine.id ?? -1" class="machine-card" @click="emit('selectMachine', machine)">
+  <div v-if="machines" v-for="machine in filteredMachines" :key="machine.id!" class="machine-card" @click="emit('selectMachine', machine)">
     <ViewTitle :machineName="machine.name" />
 
     <ViewType class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
