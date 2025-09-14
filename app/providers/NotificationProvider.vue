@@ -72,7 +72,7 @@ provide("notification", {
   opacity: 1;
 
   & img {
-    width: 10rem;
+    @include Mix.size-field-base($width: 10rem);
   }
 
   &.visible {
