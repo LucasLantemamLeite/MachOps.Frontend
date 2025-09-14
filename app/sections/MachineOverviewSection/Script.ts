@@ -2,12 +2,18 @@ import { AxiosError } from "axios";
 import type { Machine } from "~/models/MachineModel";
 import { callApiService } from "~/services/CallApiService";
 
-export async function GetAllMachines(setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
+export async function getAllMachines(setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
   setIsLoading(true);
 
   try {
     const result = await callApiService("GetAllMachines", null, 30);
     setNotification(result.message, "success", 5);
+
+    const machines = result.data ?? [];
+    if (machines.length === 0) {
+      return [];
+    }
+
     return sortMachinesByType(result.data);
   } catch (err: unknown) {
     if (err instanceof AxiosError) {
