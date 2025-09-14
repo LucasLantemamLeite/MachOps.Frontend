@@ -50,8 +50,8 @@ import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
 import { createNewMachine } from "./Script";
-import "./MachineCreatorStyle.scss";
 import type { Machine } from "~/models/MachineModel";
+import "./MachineModalStyle.scss";
 
 const props = defineProps<{
   setIsOpen: (v: boolean) => void;
@@ -67,8 +67,8 @@ const machine = reactive<Machine>({
   lastUpdatedAt: props.machine?.lastUpdatedAt ?? new Date(),
   location: props.machine?.location ?? null,
   description: props.machine?.description ?? null,
-  start: props.machine?.start ?? null,
-  return: props.machine?.return ?? null,
+  start: props.machine?.start ? new Date(props.machine.start).toISOString().split("T")[0] : null,
+  return: props.machine?.return ? new Date(props.machine.return).toISOString().split("T")[0] : null,
 });
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
