@@ -11,8 +11,8 @@
 <script setup lang="ts">
 import { MachineTypeModel } from "~/models/MachineTypeModel";
 import type { Machine } from "~/models/MachineModel";
+import { getAllMachines } from "../Script";
 import ViewType from "~/components/ImageComponent.vue";
-import { GetAllMachines } from "../Script";
 import ViewStatus from "~/components/StatusComponent.vue";
 import ViewTitle from "../../../components/NameComponent.vue";
 
@@ -22,7 +22,7 @@ const notification = inject<{ setNotification: (message: string, type: "success"
 const machines = ref<Machine[]>([]);
 
 onMounted(async () => {
-  const result = await GetAllMachines(loading?.setIsLoading!, notification?.setNotification!);
+  const result = await getAllMachines(loading?.setIsLoading!, notification?.setNotification!);
   machines.value = result;
 });
 </script>
