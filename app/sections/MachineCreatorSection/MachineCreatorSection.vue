@@ -1,7 +1,7 @@
 <template>
   <div @click="setIsOpen(false)" class="machine-creator__background">
     <div @click.stop class="machine-creator__box">
-      <form class="machine-creator__form" @submit.prevent>
+      <form class="machine-creator__form" @submit.prevent="onSubmit">
         <MachPreview :machName="machine.name" :machType="machine.type" :machStatus="machine.status" />
 
         <div class="machine-creator__input">
@@ -49,6 +49,7 @@ import TextAreaComponent from "~/components/TextAreaComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
 import MachPreview from "./fragments/MachPreview.vue";
 import ButtonComponent from "~/components/ButtonComponent.vue";
+import { createNewMachine } from "./Script";
 import "./MachineCreatorStyle.scss";
 
 const machine = reactive({
@@ -56,6 +57,15 @@ const machine = reactive({
   type: 1,
   status: 1,
 });
+
+const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
+const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
+
+function onSubmit(e: SubmitEvent) {
+  if (!loading || !notification) return;
+
+  createNewMachine(e, loading.setIsLoading, notification.setNotification);
+}
 
 function handlerMachIcon(value: number) {
   machine.type = value;
