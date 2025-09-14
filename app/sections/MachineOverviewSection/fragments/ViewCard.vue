@@ -51,6 +51,16 @@ onMounted(async () => {
     }
   });
 
+  connection.off("MachineRemoved");
+  connection.on("MachineRemoved", (removedMachine: Machine) => {
+    const exists = machines.value.find((m) => m.id === removedMachine.id);
+
+    if (exists) {
+      machines.value = machines.value.filter((m) => m.id !== removedMachine.id);
+      machines.value = sortMachinesByType(machines.value);
+    }
+  });
+
   try {
     await connection.start();
   } catch (err) {
