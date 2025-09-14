@@ -17,66 +17,52 @@ import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
+@use "../styles/GlobalMixin.scss" as Mix;
 @use "../styles/GlobalVariables.scss" as Var;
 
 .navbar {
-  display: grid;
-  position: sticky;
-  top: 0;
-  padding: 1.5rem 1.2rem;
+  @include Mix.div-field-base($display: grid);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.position-field-base($position: sticky, $top: 0);
+  @include Mix.spacing-field-base($padding: 1.5rem 1.2rem);
+  @include Mix.colors-field-base($background: Var.$purple-primary);
   grid-template-columns: 0.1fr 1fr 0.1fr;
-  background-color: Var.$purple-primary;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0rem 0.2rem 0.6rem rgba(0, 0, 0, 0.418);
   z-index: 1;
 
   & img {
-    width: 20rem;
+    @include Mix.size-field-base($width: 20rem);
   }
 
   &__search {
-    position: relative;
-    display: flex;
+    @include Mix.div-field-base($display: flex);
+    @include Mix.align-field-base($align: center);
+    @include Mix.position-field-base($position: relative);
     justify-self: center;
-    align-items: center;
 
     & input {
-      width: 50rem;
-      outline: none;
-      border: none;
-      padding: 0.8rem;
-      padding-left: 4.7rem;
-      font-family: inherit;
-      font-size: Var.$font-xl;
-      font-weight: bold;
-      border-radius: Var.$default-border-radius;
+      @include Mix.size-field-base($width: 50rem, $height: 100%);
+      @include Mix.box-frame-field-base();
+      @include Mix.spacing-field-base($padding: 0.8rem 4.7rem);
+      @include Mix.font-field-base($size: Var.$font-xl);
+      @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+      @include Mix.colors-field-base($background-selection: Var.$purple-primary, $color-selection: white);
       box-shadow: 0.4rem 0.3rem 0.2rem rgba(0, 0, 0, 0.329);
-      height: 100%;
-      box-sizing: border-box;
-
-      &::selection {
-        background-color: Var.$purple-primary;
-        color: white;
-      }
     }
   }
 
   &__icon-wrapper {
-    position: absolute;
-    left: 0.5rem;
-    top: 50%;
+    @include Mix.div-field-base($display: flex);
+    @include Mix.align-field-base($justify: center, $align: center);
+    @include Mix.size-field-base($height: 85%);
+    @include Mix.position-field-base($position: absolute, $left: 0.5rem, $top: 50%);
     transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 85%;
     padding-right: 0.5rem;
     border-right: 1px solid rgba(53, 52, 52, 0.644);
     pointer-events: none;
 
     & img {
-      width: 3.2rem;
+      @include Mix.size-field-base($width: 3.2rem);
     }
   }
 }
