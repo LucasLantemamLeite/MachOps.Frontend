@@ -17,7 +17,7 @@ import InputComponent from "~/components/InputComponent.vue";
 </script>
 
 <style lang="scss">
-@use "../styles/GlobalMixin.scss" as Mix;
+@use "../styles/GlobalMixins.scss" as Mix;
 @use "../styles/GlobalVariables.scss" as Var;
 
 .navbar {
