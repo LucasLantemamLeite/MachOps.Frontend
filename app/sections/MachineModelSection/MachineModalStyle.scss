@@ -41,7 +41,7 @@
 .machine-creator__box {
   @include Mix.div-field-base($display: flex);
   @include Mix.align-field-base($justify: center, $align: center);
-  @include Mix.size-field-base($width: 60rem, $height: 92rem);
+  @include Mix.size-field-base($width: 60rem, $height: 95rem);
   @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
   @include Mix.colors-field-base($background: Var.$purple-dark);
   @include Mix.spacing-field-base($padding: 1rem);
@@ -88,6 +88,7 @@
     @include form-element-style;
     resize: vertical;
     height: 9rem;
+    min-height: 4rem;
     max-height: 9rem;
     overflow: hidden;
   }
