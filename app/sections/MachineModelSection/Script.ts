@@ -6,9 +6,10 @@ type MachineParameters = {
   e: SubmitEvent;
   setIsLoading: (v: boolean) => void;
   setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
+  setIsOpen: (value: boolean) => void;
 };
 
-export async function createNewMachine({ e, setIsLoading, setNotification }: MachineParameters) {
+export async function createNewMachine({ e, setIsLoading, setNotification, setIsOpen }: MachineParameters) {
   e.preventDefault();
 
   const form = e.target as HTMLFormElement;
@@ -16,10 +17,10 @@ export async function createNewMachine({ e, setIsLoading, setNotification }: Mac
 
   const payload = genPayload(rawData);
 
-  await submitMachine({ payload, endpoint: "CreateNewMachine", setIsLoading, setNotification });
+  await submitMachine({ payload, endpoint: "CreateNewMachine", setIsLoading, setNotification, setIsOpen });
 }
 
-export async function updateExistingMachine(machineId: number, { e, setIsLoading, setNotification }: MachineParameters) {
+export async function updateExistingMachine(machineId: number, { e, setIsLoading, setNotification, setIsOpen }: MachineParameters) {
   e.preventDefault();
 
   const form = e.target as HTMLFormElement;
@@ -27,7 +28,7 @@ export async function updateExistingMachine(machineId: number, { e, setIsLoading
 
   const payload = genPayload(rawData, machineId);
 
-  await submitMachine({ payload, endpoint: "UpdateMachine", setIsLoading, setNotification });
+  await submitMachine({ payload, endpoint: "UpdateMachine", setIsLoading, setNotification, setIsOpen });
 }
 
 type MachinePayload = {
@@ -62,14 +63,16 @@ type submitMachineParameters = {
   endpoint: keyof typeof ApiRouterModel;
   setIsLoading: (v: boolean) => void;
   setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
+  setIsOpen: (value: boolean) => void;
 };
 
-async function submitMachine({ payload, endpoint, setIsLoading, setNotification }: submitMachineParameters) {
+async function submitMachine({ payload, endpoint, setIsLoading, setNotification, setIsOpen }: submitMachineParameters) {
   setIsLoading(true);
 
   try {
     const result = await callApiService(endpoint, payload, 30);
     setNotification(result.message, "success", 7);
+    setIsOpen(false);
   } catch (err: unknown) {
     let errorMsg = "";
     if (axios.isAxiosError(err)) {

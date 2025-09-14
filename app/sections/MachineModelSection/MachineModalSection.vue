@@ -89,9 +89,9 @@ function handerMachStatus(status: number) {
 function onSubmit(e: SubmitEvent) {
   if (!loading || !notification) return;
 
-  if (machine.id === null) createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification });
+  if (machine.id === null) createNewMachine({ e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
 
-  if (machine.id !== null) updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification });
+  if (machine.id !== null) updateExistingMachine(machine.id!, { e, setIsLoading: loading.setIsLoading, setNotification: notification.setNotification, setIsOpen: props.setIsOpen });
 }
 
 onMounted(() => {
