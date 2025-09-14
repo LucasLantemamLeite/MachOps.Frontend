@@ -77,13 +77,14 @@ async function submitMachine({ payload, endpoint, setIsLoading, setNotification,
     let errorMsg = "";
     if (axios.isAxiosError(err)) {
       const data = err.response?.data;
-
       const firstField = data && Object.values(data)[0];
       if (Array.isArray(firstField) && firstField.length > 0) {
         errorMsg = firstField[0];
       } else if (data?.message) {
         errorMsg = data.message;
       }
+    } else if (err instanceof Error) {
+      errorMsg = err.message;
     }
 
     setNotification(errorMsg, "error", 7);
