@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machines" v-for="machine in filteredMachines" :key="machine.id" class="machine-card">
+  <div v-if="machines" v-for="machine in filteredMachines" :key="machine.id ?? -1" class="machine-card" @click="emit('selectMachine', machine)">
     <ViewTitle :machineName="machine.name" />
 
     <ViewType class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
@@ -31,6 +31,10 @@ onMounted(async () => {
 const filteredMachines = computed(() => {
   return machines.value.filter((m) => m.name.toLowerCase().includes(props.filter?.toLowerCase() ?? ""));
 });
+
+const emit = defineEmits<{
+  (e: "selectMachine", machine: Machine): void;
+}>();
 </script>
 
 <style lang="scss">
