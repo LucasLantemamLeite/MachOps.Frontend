@@ -3,16 +3,16 @@ import type { ApiRouterModel } from "~/models/ApiRouterModel";
 import { callApiService } from "~/services/CallApiService";
 
 type MachineParameters = {
-  e: SubmitEvent;
+  e?: SubmitEvent | Event;
   setIsLoading: (v: boolean) => void;
   setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
   setIsOpen: (value: boolean) => void;
 };
 
 export async function createNewMachine({ e, setIsLoading, setNotification, setIsOpen }: MachineParameters) {
-  e.preventDefault();
+  e?.preventDefault();
 
-  const form = e.target as HTMLFormElement;
+  const form = e?.target as HTMLFormElement;
   const rawData = Object.fromEntries(new FormData(form));
 
   const payload = genPayload(rawData);
@@ -21,14 +21,18 @@ export async function createNewMachine({ e, setIsLoading, setNotification, setIs
 }
 
 export async function updateExistingMachine(machineId: number, { e, setIsLoading, setNotification, setIsOpen }: MachineParameters) {
-  e.preventDefault();
+  e?.preventDefault();
 
-  const form = e.target as HTMLFormElement;
+  const form = e?.target as HTMLFormElement;
   const rawData = Object.fromEntries(new FormData(form));
 
   const payload = genPayload(rawData, machineId);
 
   await submitMachine({ payload, endpoint: "UpdateMachine", setIsLoading, setNotification, setIsOpen });
+}
+
+export async function removeExistingMachine(machineId: number, { setIsLoading, setNotification, setIsOpen }: MachineParameters) {
+  await submitMachine({ payload: { Id: machineId }, endpoint: "RemoveMachine", setIsLoading, setNotification, setIsOpen });
 }
 
 type MachinePayload = {
@@ -59,7 +63,7 @@ function genPayload(formData: Record<string, any>, id?: number): MachinePayload 
 }
 
 type submitMachineParameters = {
-  payload: MachinePayload;
+  payload: MachinePayload | Record<string, number>;
   endpoint: keyof typeof ApiRouterModel;
   setIsLoading: (v: boolean) => void;
   setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
