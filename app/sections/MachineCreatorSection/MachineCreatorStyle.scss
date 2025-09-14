@@ -1,92 +1,78 @@
+@use "../../styles/GlobalFunctions.scss" as Fun;
+@use "../../styles/GlobalMixins.scss" as Mix;
 @use "../../styles/GlobalVariables.scss" as Var;
 
 @mixin form-element-style {
-  width: 100%;
-  padding: 0.9rem;
-  border: none;
-  font-size: 1.6rem;
-  font-weight: inherit;
-  font-family: inherit;
-  outline: none;
+  @include Mix.size-field-base($width: 100%);
+  @include Mix.spacing-field-base($padding: 0.9rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius, $border: 1px solid white);
+  @include Mix.font-field-base($size: 1.6rem);
+  @include Mix.colors-field-base($background: Var.$gray-dark, $color: white, $background-selection: Var.$purple-primary, $color-selection: white);
   box-shadow: 0.2rem 0.3rem 0.6rem rgba(0, 0, 0, 0.411);
-  border-radius: Var.$default-border-radius;
-  border: 1px solid white;
-  background-color: Var.$gray-dark;
-  color: white;
 }
 
 @mixin button-base($bg-color) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: inherit;
-  font-size: Var.$font-lg * 1.5;
-  border-radius: Var.$default-border-radius;
-  border: none;
-  gap: 1.5rem;
-  padding: 0.5rem;
-  background-color: $bg-color;
+  @include Mix.div-field-base($display: flex, $gap: 1.5rem);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.size-field-base($width: 100%);
+  @include Mix.spacing-field-base($padding: 0.5rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+  @include Mix.font-field-base($size: Fun.scale-percent(Var.$font-lg, 50));
+  @include Mix.colors-field-base($background: $bg-color, $color: white);
   cursor: pointer;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.349);
+
+  & img {
+    @include Mix.size-field-base($width: 4rem);
+  }
 }
 
 .machine-creator__background {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include Mix.div-field-base($display: flex);
+  @include Mix.position-field-base($position: fixed);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.colors-field-base($background: rgba(0, 0, 0, 0.692));
   inset: 0;
   backdrop-filter: blur(3px);
-  background-color: rgba(0, 0, 0, 0.692);
   z-index: 1;
 }
 
 .machine-creator__box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  background-color: Var.$purple-dark;
-  width: 60rem;
-  height: 92rem;
-  border-radius: Var.$default-border-radius;
+  @include Mix.div-field-base($display: flex);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.size-field-base($width: 60rem, $height: 92rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+  @include Mix.colors-field-base($background: Var.$purple-dark);
+  @include Mix.spacing-field-base($padding: 1rem);
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.514);
 }
 
 .machine-creator__form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 45rem;
+  @include Mix.div-field-base($display: flex, $direction: column, $gap: 1rem);
+  @include Mix.align-field-base($align: center);
+  @include Mix.size-field-base($width: 45rem);
 
   label {
-    font-size: 1.4rem;
+    @include Mix.font-field-base($size: Fun.scale-percent(Var.$font-md, 40));
   }
 
   & img {
-    width: 15rem;
+    @include Mix.size-field-base($width: 15rem);
   }
 }
 
 .machine-creator__input {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  @include Mix.div-field-base($display: flex, $direction: column);
+  @include Mix.align-field-base($justify: center);
+  @include Mix.size-field-base($width: 100%);
 
   & input {
     @include form-element-style;
-
-    &::selection {
-      background-color: Var.$purple-primary;
-      color: white;
-    }
   }
 }
 
 .machine-creator__select {
-  width: 100%;
+  @include Mix.size-field-base($width: 100%);
 
   & select {
     @include form-element-style;
@@ -94,9 +80,8 @@
 }
 
 .machine-creator__label {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+  @include Mix.div-field-base($display: flex, $direction: column);
+  @include Mix.size-field-base($width: 100%);
 
   & textarea {
     @include form-element-style;
@@ -104,40 +89,31 @@
     height: 4rem;
     min-height: 4rem;
     max-height: 8rem;
-
-    &::selection {
-      background-color: Var.$purple-primary;
-      color: white;
-    }
   }
 }
 
 .machine-creator__date {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
+  @include Mix.div-field-base($display: flex, $gap: 2rem);
+  @include Mix.align-field-base($align: center);
 
   & div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    @include Mix.div-field-base($display: flex, $direction: column);
+    @include Mix.size-field-base($width: 100%);
 
     & input {
       @include form-element-style;
-      width: 21.5rem;
+      @include Mix.size-field-base($width: 21.5rem);
+      @include Mix.spacing-field-base($padding: 0.7rem);
+      @include Mix.font-field-base($size: Fun.scale-percent(Var.$font-md, 40));
       text-align: center;
-      padding: 0.7rem;
-      font-size: 1.4rem;
     }
   }
 }
 
 .machine-creator__button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  gap: 5rem;
+  @include Mix.div-field-base($display: flex, $gap: 2rem);
+  @include Mix.align-field-base($align: center, $justify: center);
+  @include Mix.size-field-base($width: 90%);
   margin-top: 2rem;
 
   &-confirm {
@@ -147,10 +123,6 @@
     &:hover {
       background-color: rgb(4, 92, 4);
     }
-
-    & img {
-      width: 4rem;
-    }
   }
 
   &-cancel {
@@ -159,10 +131,6 @@
 
     &:hover {
       background-color: rgb(126, 8, 8);
-    }
-
-    & img {
-      width: 4rem;
     }
   }
 }
