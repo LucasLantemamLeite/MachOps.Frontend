@@ -4,7 +4,7 @@
       <ImageComponent staticImg="AddIcon" />
     </div>
 
-    <ViewCard />
+    <ViewCard :filter="filter" />
 
     <MachineCreatorSection :setIsOpen="(v) => (isMachineCreaterOpen = v)" v-if="isMachineCreaterOpen" />
   </div>
@@ -17,4 +17,6 @@ import ViewCard from "./fragments/ViewCard.vue";
 import "./MachineOverViewStyle.scss";
 
 const isMachineCreaterOpen = ref(false);
+
+defineProps<{ filter?: string }>();
 </script>
