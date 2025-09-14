@@ -1,0 +1,102 @@
+@mixin div-field-base($display: null, $direction: null, $gap: 0) {
+  gap: $gap;
+
+  @if $display != null {
+    display: $display;
+  }
+
+  @if $direction != null {
+    flex-direction: $direction;
+  }
+}
+
+@mixin align-field-base($justify: null, $align: null) {
+  @if $justify != null {
+    justify-content: $justify;
+  }
+
+  @if $align != null {
+    align-items: $align;
+  }
+}
+
+@mixin size-field-base($width: null, $height: null) {
+  @if $width != null {
+    width: $width;
+  }
+
+  @if $height != null {
+    height: $height;
+  }
+}
+
+@mixin font-field-base($size: inherit, $family: inherit, $weight: inherit) {
+  font-size: $size;
+  font-family: $family;
+  font-weight: $weight;
+}
+
+@mixin spacing-field-base($padding: 0, $margin: 0) {
+  padding: $padding;
+  margin: $margin;
+}
+
+@mixin box-frame-field-base($radius: 0, $outline: none, $border: none) {
+  outline: $outline;
+  border: $border;
+  border-radius: $radius;
+}
+
+@mixin position-field-base($position: null, $top: null, $left: null, $right: null, $bottom: null) {
+  @if $position != null {
+    position: $position;
+  }
+
+  @if $top != null {
+    top: $top;
+  }
+
+  @if $left != null {
+    left: $left;
+  }
+
+  @if $right != null {
+    right: $right;
+  }
+
+  @if $bottom != null {
+    bottom: $bottom;
+  }
+}
+
+@mixin colors-field-base($background: null, $background-hover: null, $background-selection: null, $color: null, $color-hover: null, $color-selection: null) {
+  @if $background != null {
+    background-color: $background;
+  }
+
+  @if $color != null {
+    color: $color;
+  }
+
+  @if $color-hover != null or $background-hover != null {
+    &:hover {
+      @if $color-hover != null {
+        color: $color-hover;
+      }
+      @if $background-hover != null {
+        background-color: $background-hover;
+      }
+    }
+  }
+
+  @if $color-selection != null or $background-selection != null {
+    &::selection {
+      @if $color-selection != null {
+        color: $color-selection;
+      }
+      @if $background-selection != null {
+        background-color: $background-selection;
+      }
+    }
+  }
+}
