@@ -6,7 +6,7 @@
       <div class="navbar__icon-wrapper">
         <ImageComponent staticImg="SearchIcon" />
       </div>
-      <InputComponent placeHolder="Buscar..." />
+      <InputComponent placeHolder="Buscar..." :value="filter" :onChange="setFilter" />
     </div>
   </nav>
 </template>
@@ -14,6 +14,8 @@
 <script setup lang="ts">
 import ImageComponent from "~/components/ImageComponent.vue";
 import InputComponent from "~/components/InputComponent.vue";
+
+defineProps<{ filter?: string; setFilter?: (search: string) => void }>();
 </script>
 
 <style lang="scss">
