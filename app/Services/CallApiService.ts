@@ -4,6 +4,7 @@ import { ApiRouterModel } from "~/models/ApiRouterModel";
 const api = axios.create({
   baseURL: "http://localhost:5054/v1",
   timeout: 5000,
+  headers: { "Content-Type": "application/json" },
 });
 
 export async function callApiService(router: keyof typeof ApiRouterModel, data: any = null, timeout: number = 5) {
