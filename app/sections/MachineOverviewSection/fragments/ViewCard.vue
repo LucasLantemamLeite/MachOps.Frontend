@@ -1,5 +1,5 @@
 <template>
-  <div v-if="machines" v-for="machine in machines" :key="machine.id" class="machine-card">
+  <div v-if="machines" v-for="machine in filteredMachines" :key="machine.id" class="machine-card">
     <ViewTitle :machineName="machine.name" />
 
     <ViewType class="machine-card__image" :type="MachineTypeModel" :imgKey="machine.type" />
@@ -16,6 +16,8 @@ import ViewType from "~/components/ImageComponent.vue";
 import ViewStatus from "~/components/StatusComponent.vue";
 import ViewTitle from "../../../components/NameComponent.vue";
 
+const props = defineProps<{ filter?: string }>();
+
 const machines = ref<Machine[]>([]);
 
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
@@ -24,6 +26,10 @@ const notification = inject<{ setNotification: (message: string, type: "success"
 onMounted(async () => {
   const result = await getAllMachines(loading?.setIsLoading!, notification?.setNotification!);
   machines.value = result;
+});
+
+const filteredMachines = computed(() => {
+  return machines.value.filter((m) => m.name.toLowerCase().includes(props.filter?.toLowerCase() ?? ""));
 });
 </script>
 
