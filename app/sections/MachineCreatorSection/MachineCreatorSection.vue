@@ -58,30 +58,32 @@ const machine = reactive({
   status: 1,
 });
 
+defineProps<{
+  setIsOpen: (v: boolean) => void;
+}>();
+
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
-
-function onSubmit(e: SubmitEvent) {
-  if (!loading || !notification) return;
-
-  createNewMachine(e, loading.setIsLoading, notification.setNotification);
-}
 
 function handlerMachIcon(value: number) {
   machine.type = value;
 }
 
 function handlerMachName(name: string) {
-  if (!name || name.trim().length === 0) {
+  if (!name?.trim()) {
     machine.name = "Nome da máquina...";
     return;
   }
-
   if (name.length <= 30) machine.name = name;
 }
 
 function handerMachStatus(status: number) {
   machine.status = status;
+}
+
+function onSubmit(e: SubmitEvent) {
+  if (!loading || !notification) return;
+  createNewMachine(e, loading.setIsLoading, notification.setNotification);
 }
 
 onMounted(() => {
@@ -91,8 +93,4 @@ onMounted(() => {
 onUnmounted(() => {
   document.body.style.overflow = "";
 });
-
-defineProps<{
-  setIsOpen: (v: boolean) => void;
-}>();
 </script>
