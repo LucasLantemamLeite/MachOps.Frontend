@@ -51,6 +51,7 @@ const emit = defineEmits<{
   cursor: pointer;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
   transition: 300ms ease;
+  user-select: none;
 
   &:hover {
     transform: translateX(3px);
