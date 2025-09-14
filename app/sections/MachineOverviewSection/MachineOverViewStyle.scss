@@ -1,29 +1,27 @@
+@use "../../styles/GlobalMixins.scss" as Mix;
 @use "../../styles//GlobalVariables.scss" as Var;
 
 .machine-overview__container {
-  display: grid;
-  gap: 1rem;
+  @include Mix.div-field-base($display: grid, $gap: 1rem);
+  @include Mix.spacing-field-base($padding: 2rem 1.5rem);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  padding: 2rem 1.5rem;
 }
 
 .machine-overview__add-card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 26rem;
+  @include Mix.div-field-base($display: flex, $gap: 1rem);
+  @include Mix.align-field-base($justify: center, $align: center);
+  @include Mix.size-field-base($height: 26rem);
+  @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
+  @include Mix.colors-field-base($background: Var.$purple-light, $background-hover: Var.$gray-dark);
   cursor: pointer;
-  border-radius: Var.$default-border-radius;
-  background-color: Var.$purple-light;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.3);
   transition: 300ms ease;
 
   &:hover {
-    background-color: Var.$gray-dark;
     transform: translateX(3px);
   }
 
   img {
-    width: 8rem;
+    @include Mix.size-field-base($width: 8rem);
   }
 }
