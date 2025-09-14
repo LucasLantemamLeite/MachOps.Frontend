@@ -19,6 +19,7 @@
   @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
   @include Mix.font-field-base($size: Fun.scale-percent(Var.$font-lg, 50));
   @include Mix.colors-field-base($background: $bg-color, $color: white);
+  transition: 300ms ease;
   justify-self: center;
   cursor: pointer;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.349);
@@ -120,7 +121,6 @@
 
   &-confirm {
     @include button-base(rgb(18, 134, 18));
-    transition: 200ms ease;
 
     &:hover {
       background-color: rgb(4, 92, 4);
@@ -129,7 +129,6 @@
 
   &-exclude {
     @include button-base(rgb(255, 166, 0));
-    transition: 300ms ease;
 
     &:hover {
       background-color: rgb(187, 131, 28);
@@ -138,7 +137,6 @@
 
   &-cancel {
     @include button-base(rgb(180, 12, 12));
-    transition: 300ms ease;
 
     &:hover {
       background-color: rgb(126, 8, 8);
