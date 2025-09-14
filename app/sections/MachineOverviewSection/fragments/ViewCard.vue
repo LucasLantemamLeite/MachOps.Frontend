@@ -16,10 +16,10 @@ import ViewType from "~/components/ImageComponent.vue";
 import ViewStatus from "~/components/StatusComponent.vue";
 import ViewTitle from "../../../components/NameComponent.vue";
 
+const machines = ref<Machine[]>([]);
+
 const loading = inject<{ setIsLoading: (v: boolean) => void }>("loading");
 const notification = inject<{ setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void }>("notification");
-
-const machines = ref<Machine[]>([]);
 
 onMounted(async () => {
   const result = await getAllMachines(loading?.setIsLoading!, notification?.setNotification!);
