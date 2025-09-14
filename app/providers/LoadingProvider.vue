@@ -28,7 +28,7 @@ provide("loading", {
   inset: 0;
   backdrop-filter: blur(3px);
   background-color: rgba(0, 0, 0, 0.61);
-  z-index: 100;
+  z-index: 3;
 }
 
 .loading__spinner {
