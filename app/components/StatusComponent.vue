@@ -1,12 +1,12 @@
 <template>
-  <div :style="{ borderColor: getStatusColor(props.status) }">
-    <p :style="{ color: getStatusColor(props.status) }">{{ statusFound()?.label }}</p>
+  <div :style="{ borderColor: handlerStatusColor(props.status) }">
+    <p :style="{ color: handlerStatusColor(props.status) }">{{ statusFound()?.label }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { MachineStatusModel } from "~/models/MachineStatusModel";
-import { getStatusColor } from "../sections/MachineOverviewSection/Script";
+import { handlerStatusColor } from "#imports";
 
 const props = defineProps<{
   status: number;

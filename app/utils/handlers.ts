@@ -1,0 +1,15 @@
+export function handlerStatusColor(color: number) {
+  switch (color) {
+    case 1:
+      return "#00FF37";
+
+    case 2:
+      return "#ff0000";
+
+    case 3:
+      return "#FFF600";
+
+    default:
+      return "#00FF37";
+  }
+}
