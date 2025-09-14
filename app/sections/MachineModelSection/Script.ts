@@ -1,18 +1,74 @@
 import axios from "axios";
+import type { ApiRouterModel } from "~/models/ApiRouterModel";
 import { callApiService } from "~/services/CallApiService";
 
-export async function createNewMachine(e: SubmitEvent, setIsLoading: (v: boolean) => void, setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void) {
+type MachineParameters = {
+  e: SubmitEvent;
+  setIsLoading: (v: boolean) => void;
+  setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
+};
+
+export async function createNewMachine({ e, setIsLoading, setNotification }: MachineParameters) {
   e.preventDefault();
 
   const form = e.target as HTMLFormElement;
   const rawData = Object.fromEntries(new FormData(form));
 
-  const payload = createPayLoad(rawData);
+  const payload = genPayload(rawData);
 
+  await submitMachine({ payload, endpoint: "CreateNewMachine", setIsLoading, setNotification });
+}
+
+export async function updateExistingMachine(machineId: number, { e, setIsLoading, setNotification }: MachineParameters) {
+  e.preventDefault();
+
+  const form = e.target as HTMLFormElement;
+  const rawData = Object.fromEntries(new FormData(form));
+
+  const payload = genPayload(rawData, machineId);
+
+  await submitMachine({ payload, endpoint: "UpdateMachine", setIsLoading, setNotification });
+}
+
+type MachinePayload = {
+  id?: number;
+  name: string;
+  type: number;
+  status: number;
+  location: string | null;
+  description: string | null;
+  start: Date | null;
+  return: Date | null;
+};
+
+function genPayload(formData: Record<string, any>, id?: number): MachinePayload {
+  const payload: MachinePayload = {
+    name: formData.name || "",
+    type: Number(formData.type),
+    status: Number(formData.status),
+    location: formData.location || null,
+    description: formData.description || null,
+    start: formData.start || null,
+    return: formData.return || null,
+  };
+
+  if (id !== undefined) payload.id = id;
+
+  return payload;
+}
+
+type submitMachineParameters = {
+  payload: MachinePayload;
+  endpoint: keyof typeof ApiRouterModel;
+  setIsLoading: (v: boolean) => void;
+  setNotification: (message: string, type: "success" | "error" | "warning" | "info", duration: number) => void;
+};
+
+async function submitMachine({ payload, endpoint, setIsLoading, setNotification }: submitMachineParameters) {
   setIsLoading(true);
 
   try {
-    const result = await callApiService("CreateNewMachine", payload, 30);
+    const result = await callApiService(endpoint, payload, 30);
     setNotification(result.message, "success", 7);
   } catch (err: unknown) {
     let errorMsg = "";
@@ -31,16 +87,4 @@ export async function createNewMachine(e: SubmitEvent, setIsLoading: (v: boolean
   } finally {
     setIsLoading(false);
   }
-}
-
-function createPayLoad(rawData: Record<string, any>) {
-  return {
-    name: rawData.name || "",
-    type: Number(rawData.type),
-    status: Number(rawData.status),
-    location: rawData.location || null,
-    description: rawData.description || null,
-    start: rawData.start || null,
-    return: rawData.return || null,
-  };
 }
