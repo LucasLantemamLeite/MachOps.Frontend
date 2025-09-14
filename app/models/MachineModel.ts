@@ -7,6 +7,6 @@ export interface Machine {
   lastUpdatedAt?: Date;
   location?: string | null;
   description?: string | null;
-  start?: Date | null;
-  return?: Date | null;
+  start?: Date | string | null;
+  return?: Date | string | null;
 }
