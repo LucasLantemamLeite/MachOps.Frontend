@@ -1,7 +1,7 @@
 <template>
   <label v-if="props.textLabel" :for="id">{{ props.textLabel }}</label>
 
-  <select v-if="props.type" :id="id" :name="name" :class="className" @change="handleChange">
+  <select v-if="props.type" :id="id" :name="name" :class="className" @change="handleChange" :value="value ?? 1">
     <option v-for="obj in Object.values(props.type)" :key="obj.value" :value="obj.value">
       {{ obj.label }}
     </option>
@@ -19,6 +19,7 @@ const props = defineProps<{
   id?: string;
   textLabel?: string;
   className?: string;
+  value?: number;
   onChange?: (value: number) => void;
 }>();
 

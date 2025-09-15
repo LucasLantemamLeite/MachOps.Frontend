@@ -12,13 +12,15 @@
 }
 
 @mixin button-base($bg-color) {
-  @include Mix.div-field-base($display: flex, $gap: 1.5rem);
+  @include Mix.div-field-base($display: flex, $gap: 1rem);
   @include Mix.align-field-base($justify: center, $align: center);
   @include Mix.size-field-base($width: 100%);
   @include Mix.spacing-field-base($padding: 0.5rem);
   @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
   @include Mix.font-field-base($size: Fun.scale-percent(Var.$font-lg, 50));
   @include Mix.colors-field-base($background: $bg-color, $color: white);
+  transition: 300ms ease;
+  justify-self: center;
   cursor: pointer;
   box-shadow: 0.2rem 0.3rem 0.4rem rgba(0, 0, 0, 0.349);
 
@@ -40,7 +42,7 @@
 .machine-creator__box {
   @include Mix.div-field-base($display: flex);
   @include Mix.align-field-base($justify: center, $align: center);
-  @include Mix.size-field-base($width: 60rem, $height: 92rem);
+  @include Mix.size-field-base($width: 60rem, $height: 95rem);
   @include Mix.box-frame-field-base($radius: Var.$default-border-radius);
   @include Mix.colors-field-base($background: Var.$purple-dark);
   @include Mix.spacing-field-base($padding: 1rem);
@@ -86,9 +88,10 @@
   & textarea {
     @include form-element-style;
     resize: vertical;
-    height: 4rem;
+    height: 9rem;
     min-height: 4rem;
-    max-height: 8rem;
+    max-height: 9rem;
+    overflow: hidden;
   }
 }
 
@@ -111,23 +114,29 @@
 }
 
 .machine-creator__button {
-  @include Mix.div-field-base($display: flex, $gap: 2rem);
+  @include Mix.div-field-base($display: flex, $gap: 1rem);
   @include Mix.align-field-base($align: center, $justify: center);
-  @include Mix.size-field-base($width: 90%);
+  @include Mix.size-field-base($width: 100%);
   margin-top: 2rem;
 
   &-confirm {
     @include button-base(rgb(18, 134, 18));
-    transition: 200ms ease;
 
     &:hover {
       background-color: rgb(4, 92, 4);
     }
   }
 
+  &-exclude {
+    @include button-base(rgb(255, 166, 0));
+
+    &:hover {
+      background-color: rgb(187, 131, 28);
+    }
+  }
+
   &-cancel {
     @include button-base(rgb(180, 12, 12));
-    transition: 300ms ease;
 
     &:hover {
       background-color: rgb(126, 8, 8);

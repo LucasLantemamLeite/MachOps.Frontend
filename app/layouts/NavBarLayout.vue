@@ -62,6 +62,7 @@ defineProps<{ filter?: string; setFilter?: (search: string) => void }>();
     padding-right: 0.5rem;
     border-right: 1px solid rgba(53, 52, 52, 0.644);
     pointer-events: none;
+    user-select: none;
 
     & img {
       @include Mix.size-field-base($width: 3.2rem);

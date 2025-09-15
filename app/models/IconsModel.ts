@@ -6,6 +6,7 @@ import Confirm from "~/assets/icons/Confirm.svg";
 import Cancel from "~/assets/icons/Cancel.svg";
 import Warning from "~/assets/icons/Warning.svg";
 import Info from "~/assets/icons/Info.svg";
+import Exclude from "~/assets/icons/Exclude.svg";
 import Forklift from "~/assets/machines/Forklift.svg";
 import Loader from "~/assets/machines/Loader.svg";
 import Excavator from "~/assets/machines/Excavator.svg";
@@ -30,4 +31,5 @@ export const IconsModel = {
   CancelIcon: Cancel,
   WarningIcon: Warning,
   InfoIcon: Info,
+  Exclude: Exclude,
 };

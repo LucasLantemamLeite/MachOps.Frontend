@@ -16,8 +16,18 @@ export async function getAllMachines(setIsLoading: (v: boolean) => void, setNoti
 
     return sortMachinesByType(result.data);
   } catch (err: unknown) {
+    let errorMsg = "";
     if (axios.isAxiosError(err)) {
-      setNotification(err.response?.data.message ?? err.message ?? "Erro desconhecido.", "error", 4);
+      const data = err.response?.data;
+
+      const firstField = data && Object.values(data)[0];
+      if (Array.isArray(firstField) && firstField.length > 0) {
+        errorMsg = firstField[0];
+      } else if (data?.message) {
+        errorMsg = data.message;
+      }
+    } else if (err instanceof Error) {
+      errorMsg = err.message;
     }
 
     return [];
@@ -26,6 +36,6 @@ export async function getAllMachines(setIsLoading: (v: boolean) => void, setNoti
   }
 }
 
-function sortMachinesByType(machines: Machine[]) {
-  return machines.sort((a, b) => a.type - b.type);
+export function sortMachinesByType(machines: Machine[]) {
+  return [...machines].sort((a, b) => a.type - b.type);
 }
