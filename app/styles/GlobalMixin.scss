@@ -1,0 +1,91 @@
+@mixin Div-Field-Base($display: flex, $direction: row, $gap: 0) {
+  display: $display;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+@mixin Align-Field-Base($justify: none, $align: none) {
+  @if ($justify != none) {
+    justify-content: $justify;
+  }
+
+  @if ($align != none) {
+    align-items: $align;
+  }
+}
+
+@mixin Position-Field-Base($position: none, $bottom: none, $top: none, $left: none, $right: none) {
+  @if ($position != none) {
+    position: $position;
+  }
+
+  @if ($bottom != none) {
+    bottom: $bottom;
+  }
+
+  @if ($top != none) {
+    top: $top;
+  }
+
+  @if ($left != none) {
+    left: $left;
+  }
+
+  @if ($right != none) {
+    right: $right;
+  }
+}
+
+@mixin Font-Field-Base($size: inherit, $family: inherit, $weight: inherit) {
+  font-size: $size;
+  font-family: $family;
+  font-weight: $weight;
+}
+
+@mixin Box-Field-Base($radius: none, $border: none, $shadow) {
+  @if ($radius != none) {
+    border-radius: $radius;
+  }
+
+  @if ($border != none) {
+    border: $border;
+  }
+
+  @if ($shadow != none) {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin Color-Field-Base($color: none, $background: none) {
+  @if ($color != none) {
+    color: $color;
+  }
+
+  @if ($background != none) {
+    background-color: $background;
+  }
+}
+
+@mixin Hover-Color-Field-Base($color: none, $background: none) {
+  &:hover {
+    @if ($color != none) {
+      color: $color;
+    }
+
+    @if ($background != none) {
+      background-color: $background;
+    }
+  }
+}
+
+@mixin Selection-Color-Field-Base($color: none, $background: none) {
+  &::selection {
+    @if ($color != none) {
+      color: $color;
+    }
+
+    @if ($background != none) {
+      background-color: $background;
+    }
+  }
+}
