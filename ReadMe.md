@@ -59,7 +59,7 @@ Assim, o conceito foi reaproveitado e transformado em um **projeto de portfólio
 ### 🚀 Roadmap
 
 - [x] Estrutura inicial do projeto
-- [ ] Criação da página raiz (index.vue)
+- [x] Criação da página raiz (index.vue)
 - [ ] Criação dos componentes
 - [ ] Adicionar Icones SVG e Imagens PNG
 - [ ] Criar o arquivo dockerfile
